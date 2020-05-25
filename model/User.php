@@ -54,21 +54,22 @@ class User {
             }
                
             if (count($validate) >= 1) {
-                header("Location: index.php?modulo=User&acao=login");
+                $_SESSION['messagePass'] = array(
+                    'text' => "Login ou senha incorretos, por favor tente novamente",
+                    'class' => 'danger'
+                );
                 return $validate;
             }
 
             if ($_POST['email'] == $_SESSION[$_POST['email']]['email'] && $_POST['password'] == $_SESSION[$_POST['email']]['password']) {
                 $_SESSION['Auth'] = $_SESSION[$_POST['email']];
-            } else {
-                $validate['invalidUserOrPassword'] = "Usuário ou senha inválidos";
-            }
+            } 
          
             $_SESSION['messageSuccess'] = array(
                 'message' => "Usuário logado com sucesso",
                 'class' => 'Success'
             );
-            header("Location: index.php?modulo=Raffle&acao=raffleCrud&raffleAction=listAll");
+            header("Location: index.php?modulo=Raffle&acao=raffleCrud&raffleAction=addRaffle");
         }
     }
 

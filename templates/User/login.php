@@ -8,6 +8,15 @@
         </h3>
     <?php endif; ?>
 
+    <?php if (isset($_SESSION['messagePass'])): ?>
+        <h3 class="text-<?= $_SESSION['messagePass']['class']; ?> d-flex justify-content-center">
+            <?php 
+                echo $_SESSION['messagePass']['text'];
+                unset($_SESSION['messagePass']); 
+            ?>
+        </h3>
+    <?php endif; ?>
+
     <div class="container d-flex justify-content-center mt-5">
         <div id="modal">
 
