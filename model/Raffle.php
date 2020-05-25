@@ -44,7 +44,7 @@ class Raffle {
                     if (isset($_SESSION['raffles']) && !empty($_SESSION['raffles'])) {
                         $lastId = end($_SESSION['raffles']);
                         $id = $lastId['id'] + 1;
-                    } else {
+                    } 
                         $this->raffle = array(
                             'id' => $id,
                             'productName' => $_POST['productName'],
@@ -52,7 +52,7 @@ class Raffle {
                             'unitaryValue' => $_POST['unitaryValue']
                         );
                         $_SESSION['raffles'][$id] = $this->raffle;
-                    }
+
                     $_SESSION['message'] = "Rifa adicionada com sucesso";
                     $this->data['messageClass'] = 'success';
                 }
