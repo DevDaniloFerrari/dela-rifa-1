@@ -67,7 +67,7 @@ class User {
                 'message' => "Usuário logado com sucesso",
                 'class' => 'Success'
             );
-            header("Location: index.php?modulo=Raffle&acao=listAll");
+            header("Location: index.php?modulo=Raffle&acao=raffleCrud&raffleAction=listAll");
         }
     }
 
