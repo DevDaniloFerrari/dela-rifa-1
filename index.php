@@ -5,7 +5,7 @@
         header("Location: index.php?modulo=User&acao=login");
     }
 
-    if ((!isset($_SESSION['Auth'])) && $_GET['modulo'] != 'User') {
+    if (isset($_GET['modulo']) && (!isset($_SESSION['Auth'])) && $_GET['modulo'] != 'User') {
         $_SESSION['message'] = array(
             'text' => "Acesso não autorizado",
             'class' => 'danger'
