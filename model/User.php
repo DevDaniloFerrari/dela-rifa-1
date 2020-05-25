@@ -52,17 +52,17 @@ class User {
             if (!isset($_SESSION[$_POST['email']])) {
                 $validate['notExist'] = "Email não cadastrado";
             }
+               
+            if (count($validate) >= 1) {
+                return $validate;
+            }
 
             if ($_POST['email'] == $_SESSION[$_POST['email']]['email'] && $_POST['password'] == $_SESSION[$_POST['email']]['password']) {
                 $_SESSION['Auth'] = $_SESSION[$_POST['email']];
             } else {
                 $validate['invalidUserOrPassword'] = "Usuário ou senha inválidos";
             }
-            
-            if (count($validate) >= 1) {
-                return $validate;
-            }
-
+         
             $_SESSION['messageSuccess'] = array(
                 'message' => "Usuário logado com sucesso",
                 'class' => 'Success'
