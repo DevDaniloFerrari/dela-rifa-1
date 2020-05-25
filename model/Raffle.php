@@ -77,6 +77,8 @@ class Raffle {
             case 'deleteRaffle';
                 if ($_SERVER['REQUEST_METHOD'] === "POST") {
                     if (isset($_SESSION['raffles'][$_POST['raffleDelete']])) {
+                        $_SESSION['message'] = "Rifa deletada com sucesso";
+                        $this->data['messageClass'] = 'success';
                         unset($_SESSION['raffles'][$_POST['raffleDelete']]);
                     } else {
                         $_SESSION['message'] = "Nenhuma rifa encontrada com o ID solicitado, por favor tente novamente";

@@ -13,16 +13,22 @@ class User {
                 }
             }
 
+            if (isset($this->user['email']) && isset($_SESSION[$this->user['email']])) {
+                $validate['existEmail'] = "Email já cadastrado";
+            }
+
             if (isset($this->user['email']) && $this->user['email'] != $this->user['confirmEmail']) {
                 $validate['emailDiff'] = "Os emails não coincidem";
             }
 
-            if (isset($this->user['password']) && $this->user['password'] != $this->user['confirmPassword']) {
-                $validate['passwordDiff'] = "As senhas não coincidem";
-            }
+            if (isset($this->password)) {
+                if (isset($this->user['password']) && $this->user['password'] != $this->user['confirmPassword']) {
+                    $validate['passwordDiff'] = "As senhas não coincidem";
+                }
 
-            if (isset($this->user['password']) && strlen($this->user['password']) < 6) {
-                $validate['passwordLength'] = "Senha deve conter no minímo 6 caracteres";
+                if (isset($this->user['password']) && strlen($this->user['password']) < 6) {
+                    $validate['passwordLength'] = "Senha deve conter no minímo 6 caracteres";
+                }
             }
 
             if (count($validate) >= 1) {

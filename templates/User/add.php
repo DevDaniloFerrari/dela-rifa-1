@@ -10,7 +10,7 @@
                         <hr>
                         <div class="form-group required">
                             <label for="fullName">Nome completo:</label>
-                            <input type="text" class="form-control" name="Nome" id="fullName">
+                            <input type="text" class="form-control" value="<?= isset($_POST['Nome']) ? $_POST['Nome'] : ''?>" name="Nome" id="fullName">
                             <span class="text-danger"><?= isset($data['empty']['Nome']) ? $data['empty']['Nome'] : '' ?></span>
                         </div>
                         <div class="row">
@@ -37,14 +37,14 @@
                         </div>
                         <div class="form-group required">
                             <label for="birthDate">Data de nascimento:</label>
-                            <input type="date" class="form-control" name="birthDate" id="birthDate">
+                            <input type="date" class="form-control" value="<?= isset($_POST['birthDate']) ? $_POST['birthDate'] : ''?>"  name="birthDate" id="birthDate">
                             <span class="text-danger"><?= isset($data['empty']['birthDate']) ? $data['empty']['birthDate'] : '' ?></span>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <div class="form-group required">
                                     <label for="homePhone">Telefone: </label>
-                                    <input type="number" class="form-control" name="homePhone" id="homePhone">
+                                    <input type="number" class="form-control" value="<?= isset($_POST['homePhone']) ? $_POST['homePhone'] : ''?>" name="homePhone" id="homePhone">
                                     <div class="text-danger">
                                         <?php
                                         if (isset($data['empty']['homePhone'])) {
@@ -57,7 +57,7 @@
                             <div class="col">
                                 <div class="form-group required">
                                     <label for="cellPhone">Celular:</label>
-                                    <input type="number" class="form-control" name="cellPhone" id="cellPhone">
+                                    <input type="number" class="form-control" value="<?= isset($_POST['cellPhone']) ? $_POST['cellPhone'] : ''?>" name="cellPhone" id="cellPhone">
                                     <div class="text-danger">
                                         <?php
                                         if (isset($data['empty']['cellPhone'])) {
@@ -76,7 +76,7 @@
                             <div class="col">
                                 <div class="form-group required">
                                     <label for="postalCode">CEP:</label>
-                                    <input type="text" maxlength="8" class="form-control" name="postalCode" id="postalCode">
+                                    <input type="text" maxlength="8" class="form-control" value="<?= isset($_POST['postalCode']) ? $_POST['postalCode'] : ''?>" name="postalCode" id="postalCode">
                                     <div class="text-danger">
                                         <?php
                                         if (isset($data['empty']['postalCode'])) {
@@ -89,7 +89,7 @@
                             <div class="col">
                                 <div class="form-group required">
                                     <label for="number">Numero:</label>
-                                    <input type="number" class="form-control" name="number" id="number">
+                                    <input type="number" class="form-control" value="<?= isset($_POST['number']) ? $_POST['number'] : ''?>" name="number" id="number">
                                     <div class="text-danger">
                                         <?php
                                         if (isset($data['empty']['number'])) {
@@ -104,7 +104,7 @@
                             <div class="col">
                                 <div class="form-group required">
                                     <label for="street">Rua:</label>
-                                    <input type="text" class="form-control" name="street" id="street">
+                                    <input type="text" class="form-control" value="<?= isset($_POST['street']) ? $_POST['street'] : ''?>" name="street" id="street">
                                     <div class="text-danger">
                                         <?php
                                         if (isset($data['empty']['street'])) {
@@ -117,7 +117,7 @@
                             <div class="col">
                                 <div class="form-group required">
                                     <label for="neighborhood">Bairro:</label>
-                                    <input type="text" class="form-control" name="neighborhood" id="neighborhood">
+                                    <input type="text" class="form-control" value="<?= isset($_POST['neighborhood']) ? $_POST['neighborhood'] : ''?>" name="neighborhood" id="neighborhood">
                                     <div class="text-danger">
                                         <?php
                                         if (isset($data['empty']['neighborhood'])) {
@@ -132,7 +132,7 @@
                             <div class="col">
                                 <div class="form-group required">
                                     <label for="state">Estado:</label>
-                                    <input type="text" class="form-control" name="state" id="state">
+                                    <input type="text" class="form-control" value="<?= isset($_POST['state']) ? $_POST['state'] : ''?>" name="state" id="state">
                                     <div class="text-danger">
                                         <?php
                                         if (isset($data['empty']['state'])) {
@@ -145,7 +145,7 @@
                             <div class="col">
                                 <div class="form-group required">
                                     <label for="city">Cidade:</label>
-                                    <input type="text" class="form-control" name="city" id="city">
+                                    <input type="text" class="form-control" value="<?= isset($_POST['city']) ? $_POST['city'] : ''?>" name="city" id="city">
                                     <div class="text-danger">
                                         <?php
                                         if (isset($data['empty']['city'])) {
@@ -158,7 +158,7 @@
                         </div>
                         <div class="form-group required">
                             <label for="country">País:</label>
-                            <input type="text" class="form-control" name="country" id="country">
+                            <input type="text" class="form-control" value="<?= isset($_POST['country']) ? $_POST['country'] : ''?>" name="country" id="country">
                             <div class="text-danger">
                                 <?php
                                 if (isset($data['empty']['country'])) {
@@ -173,7 +173,7 @@
                         <hr>
                         <div class="form-group required">
                             <label for="email">Email:</label>
-                            <input type="email" class="form-control" name="email" id="email">
+                            <input type="email" value="<?= isset($_POST['email']) ? $_POST['email'] : ''?>" class="form-control" name="email" id="email">
                             <div class="text-danger">
                                 <?php
                                 if (isset($data['empty']['email'])) {
@@ -182,12 +182,17 @@
                                 if (isset($data['emailDiff'])) {
                                     echo $data['emailDiff'];
                                 }
+
+                                if (isset($data['existEmail'])) {
+                                    echo $data['existEmail'];
+                                }
+
                                 ?>
                             </div>
                         </div>
                         <div class="form-group required">
                             <label for="confirmEmail">Confirme seu Email:</label>
-                            <input type="email" class="form-control" name="confirmEmail" id="confirmEmail">
+                            <input type="email" class="form-control" value="<?= isset($_POST['confirmEmail']) ? $_POST['confirmEmail'] : ''?>" name="confirmEmail" id="confirmEmail">
                             <div class="text-danger">
                                 <?php
                                 if (isset($data['empty']['email'])) {
@@ -220,7 +225,7 @@
                             <div class="text-danger">
                                 <?php
                                 if (isset($data['empty']['password'])) {
-                                    echo $data['password'];
+                                    echo $data['empty']['password'];
                                     echo '<br>';
                                 }
                                 if (isset($data['passwordLength'])) {
