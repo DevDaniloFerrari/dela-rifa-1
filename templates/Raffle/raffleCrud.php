@@ -1,29 +1,28 @@
-<div class="">
+<div class="container">
     <h3>Opções</h3>
-    <div class="col-12 border p-2 row m-0">
+    <div class="row border m-0 p-md-2" style="text-align: center">
         
-        <div class="col-1">
+        <div class="col-md-2 p-2">
+            <a href="index.php?modulo=Raffle&acao=raffleCrud&raffleAction=addRaffle" class="btn btn-success"> <i class="fas fa-plus"></i> Adicionar rifa</a>
+        </div>
+        
+        <div class="col-md-2 p-2">
+            <a href="index.php?modulo=Raffle&acao=raffleCrud&raffleAction=editRaffle" class="btn btn-secondary"> <i class="fas fa-edit"></i> Editar rifa</a>
         </div>
 
-        <div class="col-2">
-            <a href="index.php?modulo=Raffle&acao=raffleCrud&raffleAction=listAll" class="btn btn-success">Listar todas rifas</a>
+        <div class="col-md-2 p-2">
+            <a href="index.php?modulo=Raffle&acao=raffleCrud&raffleAction=deleteRaffle" class="btn btn-danger"> <i class="fas fa-trash-alt"></i> Deletar rifa</a>
         </div>
 
-        <div class="col-2">
-            <a href="index.php?modulo=Raffle&acao=raffleCrud&raffleAction=listOneRaffle" class="btn btn-success">Listar apenas uma rifa</a>
+        <div class="col-md-3 p-2">
+            <a href="index.php?modulo=Raffle&acao=raffleCrud&raffleAction=listAll" class="btn btn-primary"> <i class="fas fa-list"></i> Listar todas rifas</a>
         </div>
 
-        <div class="col-2">
-            <a href="index.php?modulo=Raffle&acao=raffleCrud&raffleAction=addRaffle" class="btn btn-success">Adicionar rifa</a>
+        <div class="col-md-3 p-2">
+            <a href="index.php?modulo=Raffle&acao=raffleCrud&raffleAction=listOneRaffle" class="btn btn-primary"> <i class="fas fa-dice-one"></i> Listar apenas uma rifa</a>
         </div>
 
-        <div class="col-2">
-            <a href="index.php?modulo=Raffle&acao=raffleCrud&raffleAction=editRaffle" class="btn btn-success">Editar rifa</a>
-        </div>
 
-        <div class="col-1">
-            <a href="index.php?modulo=Raffle&acao=raffleCrud&raffleAction=deleteRaffle" class="btn btn-success">Deletar rifa</a>
-        </div>
     </div>
     <br>
     <?php if (isset($_SESSION['message'])): ?>
@@ -38,7 +37,7 @@
     <br>
     <?php if ($data['action'] == 'listOneRaffle'): ?>
         <form action="" method="POST">
-            <div class="form-group col-6">
+            <div>
                 <label for="raffleId">ID da rifa:</label>
                 <input class="form-control" type="text" placeholder="Digite o ID da rifa" name="raffleId">
                 <button type="submit" class="btn btn-success my-4">Enviar</button>

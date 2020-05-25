@@ -30,7 +30,7 @@
     >
     <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse d-flex justify-content-end p-2" id="navbarNav">
+    <div class="collapse navbar-collapse p-2" id="navbarNav">
         <ul class="navbar-nav ">
         <?php if (!isset($_SESSION['Auth'])): ?>
             <li class="nav-item">

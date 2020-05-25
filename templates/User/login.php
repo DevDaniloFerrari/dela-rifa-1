@@ -28,7 +28,7 @@
             </form>
 
             <p>Ainda não possui cadastro?
-                <a href="register.html">Registre-se</a>
+                <a href="index.php?modulo=User&acao=add">Registre-se</a>
             </p>
 
         </div>
