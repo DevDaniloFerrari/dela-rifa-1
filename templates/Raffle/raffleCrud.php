@@ -9,9 +9,10 @@
         </h3>
     <?php endif; ?>
     <div class="col-12 border p-2 row m-0">
-        <div class="col-1">
+        <div class="col-md-2 p-2">
+            <a href="index.php?modulo=Raffle&acao=raffleCrud&raffleAction=addRaffle" class="btn btn-success"> <i class="fas fa-edit"></i>Adicionar rifa</a>
         </div>
-        
+
         <div class="col-md-2 p-2">
             <a href="index.php?modulo=Raffle&acao=raffleCrud&raffleAction=editRaffle" class="btn btn-secondary"> <i class="fas fa-edit"></i> Editar rifa</a>
         </div>
@@ -79,7 +80,7 @@
             </div>
         <?php else: ?>
             <div class="text-primary d-flex justify-content-center my-5 ">
-                <h3 class="text-warning">Não foram adicionadas rifas.</h3>
+                <h3 class="text-warning">Não foram encontradas rifas.</h3>
             </div>
         <?php endif; ?>
     <?php endif; ?>

@@ -19,16 +19,17 @@ class Raffle {
                 if (isset($_SESSION['raffles'])) {
                     $this->data['raffles'] = $_SESSION['raffles'];
                 }
-                $this->data['actionTitle'] = "Listar todas rifa";
+                $this->data['actionTitle'] = "Listar todas rifas";
                 break;
             case 'listOneRaffle':
+                $this->data['actionTitle'] = "Listar uma rifa";
+
                 if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
                     $raffleid = 0;
                     if (isset($_POST['raffleId'])) {
                         $raffleid = $_POST['raffleId'];
                     }
-                    $this->data['actionTitle'] = "Listar uma rifa";
 
                     if (isset($_SESSION['raffles'][$raffleid])) {
                         $this->data['raffles'][$raffleid] = $_SESSION['raffles'][$raffleid];
@@ -71,6 +72,7 @@ class Raffle {
                         $this->data['messageClass'] = 'danger';
                     }
                 }
+                $this->data['actionTitle'] = "Editar rifa";
                 break;
             case 'deleteRaffle';
                 if ($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -81,6 +83,8 @@ class Raffle {
                         $this->data['messageClass'] = 'danger';
                     }
                 }
+                $this->data['actionTitle'] = "Deletar rifa";
+
                 break;
         }
 
