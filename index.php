@@ -13,6 +13,11 @@
         header("Location: index.php?modulo=User&acao=login");
     }
 
+    if (isset($_SESSION['Auth']) && $_GET['modulo'] == 'User') {
+        header("Location: index.php?modulo=Raffle&acao=raffleCrud&raffleAction=addRaffle");
+
+    }
+
     require 'controller.php';
     require './templates/layouts/header.php';
     require 'view.php';

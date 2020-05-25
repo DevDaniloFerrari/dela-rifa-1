@@ -1,13 +1,22 @@
-============== Alunos ============
-Acessar Todos Alunos = index.php?modulo=Aluno&acao=mostrarTodosAlunos
-Acessar um aluno = index.php?modulo=Aluno&acao=mostrarUmAluno&id=5
+============== Acessar a aplicação ===========
+Upload feito na amazon
+http://18.191.197.228/
+=============================================
+
+============== Rifas ============
+Adicionar rifa = http://18.191.197.228/index.php?modulo=Raffle&acao=raffleCrud&raffleAction=addRaffle
+Editar rifa = http://18.191.197.228/index.php?modulo=Raffle&acao=raffleCrud&raffleAction=editRaffle
+Deletar rifa = http://18.191.197.228/index.php?modulo=Raffle&acao=raffleCrud&raffleAction=deleteRaffle
+Listar todas rifas = http://18.191.197.228/index.php?modulo=Raffle&acao=raffleCrud&raffleAction=listAll
+Listar apenas uma rifa = http://18.191.197.228/index.php?modulo=Raffle&acao=raffleCrud&raffleAction=listOneRaffle
 ===================================
 
-============== Professores ==========
-Acessar Todos Professores = index.php?modulo=Professor&acao=mostrarTodosProfessores
-Acessar um Professor = index.php?modulo=Professor&acao=mostrarUmProfessor&id=5
+============== Usuários ==========
+Fazer login = http://18.191.197.228/index.php?modulo=User&acao=login
+Registrar usuário  = http://18.191.197.228/index.php?modulo=User&acao=add
 
 ==============GRUPO ==========
 Manoel Merlin - 21154363
 Danilo - 21086355
 Lucas Oliveira - 21094755
+Kim Kokubum - 21160694
