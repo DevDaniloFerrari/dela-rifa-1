@@ -1,5 +1,5 @@
 <body>
-    <a href="index.html" class="button btn btn-secondary">Voltar</a>
+    <a href="index.php?modulo=User&acao=login" class="button btn btn-secondary">Voltar</a>
 
     <div class="container d-flex justify-content-center">
         <div id="modal">
