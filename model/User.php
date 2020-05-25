@@ -21,7 +21,7 @@ class User {
                 $validate['emailDiff'] = "Os emails não coincidem";
             }
 
-            if (isset($this->password)) {
+            if (isset($this->user['password'])) {
                 if (isset($this->user['password']) && $this->user['password'] != $this->user['confirmPassword']) {
                     $validate['passwordDiff'] = "As senhas não coincidem";
                 }
