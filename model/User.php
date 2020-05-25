@@ -29,6 +29,11 @@ class User {
                 return $validate;
             }
             $_SESSION[$this->user['email']] = $this->user;
+            $_SESSION['message'] = array(
+                'text' => "Usuário cadastrado com sucesso",
+                'class' => 'success'
+            );
+            header("Location: index.php?modulo=User&acao=login");
             return $this->user;
         }
     }
@@ -57,7 +62,11 @@ class User {
             if (count($validate) >= 1) {
                 return $validate;
             }
-            
+
+            $_SESSION['messageSuccess'] = array(
+                'message' => "Usuário logado com sucesso",
+                'class' => 'Success'
+            );
             header("Location: index.php?modulo=Raffle&acao=raffleCrud");
         }
     }

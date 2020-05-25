@@ -1,9 +1,15 @@
 <?php
     session_start();
+    
+    if (!isset($_GET['modulo'])) {
+        header("Location: index.php?modulo=User&acao=login");
+    }
 
     if ((!isset($_SESSION['Auth'])) && $_GET['modulo'] != 'User') {
-        $message = "Você precisa estar autenticado para realizar está ação";
-        $_SESSION['message'] = $message;
+        $_SESSION['message'] = array(
+            'text' => "Acesso não autorizado",
+            'class' => 'danger'
+        );
         header("Location: index.php?modulo=User&acao=login");
     }
 

@@ -1,7 +1,14 @@
 <div class="">
     <h3>Opções</h3>
+    <?php if (isset($_SESSION['messageSuccess'])): ?>
+        <h3 class="text-<?= $_SESSION['messageSuccess']['class']; ?> d-flex justify-content-center">
+            <?php 
+                echo $_SESSION['messageSuccess']['message'];
+                unset($_SESSION['messageSuccess']); 
+            ?>
+        </h3>
+    <?php endif; ?>
     <div class="col-12 border p-2 row m-0">
-        
         <div class="col-1">
         </div>
 

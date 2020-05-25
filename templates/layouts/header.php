@@ -2,6 +2,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href="./css/register.css">
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -30,7 +31,7 @@
     >
     <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse d-flex justify-content-end p-2" id="navbarNav">
+    <div class="collapse navbar-collapse mvc-nav" id="navbarNav">
         <ul class="navbar-nav ">
         <?php if (!isset($_SESSION['Auth'])): ?>
             <li class="nav-item">
@@ -47,3 +48,4 @@
         </ul>
     </div>
 </nav>
+<br>

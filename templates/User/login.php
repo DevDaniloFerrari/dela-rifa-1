@@ -1,8 +1,8 @@
 <body>
     <?php if (isset($_SESSION['message'])): ?>
-        <h3 class="text-danger d-flex justify-content-center">
+        <h3 class="text-<?= ($_SESSION['message']['class']) ? $_SESSION['message']['class'] : 'danger'; ?> d-flex justify-content-center">
             <?php 
-                echo $_SESSION['message'];
+                echo $_SESSION['message']['text'];
                 unset($_SESSION['message']); 
             ?>
         </h3>
@@ -28,9 +28,8 @@
             </form>
 
             <p>Ainda não possui cadastro?
-                <a href="register.html">Registre-se</a>
+                <a href="index.php?modulo=User&acao=add">Registre-se</a>
             </p>
-
         </div>
     </div>
 </body>
