@@ -54,6 +54,7 @@ class User {
             }
                
             if (count($validate) >= 1) {
+                header("Location: index.php?modulo=User&acao=login");
                 return $validate;
             }
 
