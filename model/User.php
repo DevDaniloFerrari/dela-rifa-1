@@ -1,0 +1,69 @@
+<?php
+class User {
+    private $user = array();
+
+    public function add() {
+        $validate = [];
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            foreach ($_POST as $key => $postData) {
+                if (isset($_POST[$key]) && !empty($_POST[$key])) {
+                    $this->user[$key] = $postData;
+                } else {
+                    $validate['empty'][$key] = "Campo está vazio por favor preencher";
+                }
+            }
+
+            if (isset($this->user['email']) && $this->user['email'] != $this->user['confirmEmail']) {
+                $validate['emailDiff'] = "Os emails não coincidem";
+            }
+
+            if (isset($this->user['password']) && $this->user['password'] != $this->user['confirmPassword']) {
+                $validate['passwordDiff'] = "As senhas não coincidem";
+            }
+
+            if (isset($this->user['password']) && strlen($this->user['password']) < 6) {
+                $validate['passwordLength'] = "Senha deve conter no minímo 6 caracteres";
+            }
+
+            if (count($validate) >= 1) {
+                return $validate;
+            }
+            $_SESSION[$this->user['email']] = $this->user;
+            return $this->user;
+        }
+    }
+
+    public function login() {
+        $validate = array();
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            if (!isset($_POST['email']) && empty($_POST['email'])) {
+                $validate['emptyEmail'] = "Por favor preencher o E-mail";
+            }
+
+            if (!isset($_POST['password']) && empty($_POST['password'])) {
+                $validate['emptyPassword'] = "Por favor preencher a senha";
+            }
+
+            if (!isset($_SESSION[$_POST['email']])) {
+                $validate['notExist'] = "Email não cadastrado";
+            }
+
+            if ($_POST['email'] == $_SESSION[$_POST['email']]['email'] && $_POST['password'] == $_SESSION[$_POST['email']]['password']) {
+                $_SESSION['Auth'] = $_SESSION[$_POST['email']];
+            } else {
+                $validate['invalidUserOrPassword'] = "Usuário ou senha inválidos";
+            }
+            
+            if (count($validate) >= 1) {
+                return $validate;
+            }
+            
+            header("Location: index.php?modulo=Raffle&acao=raffleCrud");
+        }
+    }
+
+    public function logout() {
+        unset($_SESSION['Auth']);
+        header("Location: index.php?modulo=User&acao=login");
+    }
+}

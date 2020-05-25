@@ -1,0 +1,13 @@
+============== Alunos ============
+Acessar Todos Alunos = index.php?modulo=Aluno&acao=mostrarTodosAlunos
+Acessar um aluno = index.php?modulo=Aluno&acao=mostrarUmAluno&id=5
+===================================
+
+============== Professores ==========
+Acessar Todos Professores = index.php?modulo=Professor&acao=mostrarTodosProfessores
+Acessar um Professor = index.php?modulo=Professor&acao=mostrarUmProfessor&id=5
+
+==============GRUPO ==========
+Manoel Merlin - 21154363
+Danilo - 21086355
+Lucas Oliveira - 21094755
