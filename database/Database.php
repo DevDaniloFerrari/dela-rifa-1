@@ -55,4 +55,12 @@ class Database {
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function delete($table, $id)
+    {
+        $query = "DELETE FROM $table where id = " . $id ."";
+        $stmt = $this->conection->prepare($query);
+        $stmt->execute();
+        return ($stmt->affected_rows === 1) ? true : false;
+    }
+
 }

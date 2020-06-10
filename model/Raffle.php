@@ -106,6 +106,13 @@ class Raffle {
     {
         $raffles = new Database();
         $this->raffle = $raffles->selectAll('raffles');
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            if (isset($_POST['product-name'])) {
+                $productName = $_POST['product-name'];
+                $query = "SELECT * FROM `raffles` WHERE `productName` LIKE '%$productName%'";
+                $this->raffle = $raffles->makeQuery($query);
+            }
+        }
         return $this->raffle;
     }
 
@@ -174,6 +181,17 @@ class Raffle {
         $query = "SELECT users.name, raffles.id, raffles.productName, raffles.description, raffles.participantsQuantity, raffles.unitaryValue, raffles.created_by, raffles.updated, raffles.created FROM users INNER JOIN raffles WHERE users.id = raffles.created_by";
         $this->raffle = $raffle->makeQuery($query);
         return $this->raffle;
+    }
+
+    public function delete()
+    {
+        return $_GET;
+        $id = $_GET['raffleId'];
+        $raffle = new Database();
+        if ($raffle->delete('raffle', $id)) {
+            return Flash::flashWithRedirect('Sucesso ao deletar rifa', 'success', 'modulo=Dashboard&acao=index&dashboardRoute=raffleList');
+        }
+        return Flash::flashWithRedirect('Erro ao deletar rifa', 'error', 'modulo=Dashboard&acao=index&dashboardRoute=raffleList');
     }
 
     public function editar() {
