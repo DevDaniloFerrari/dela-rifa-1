@@ -1,10 +1,19 @@
 <?php
+
+use database\Database;
+
 class Raffle {
     
     public $data = array();
     private $raffle = array();
 
-    public function raffleCrud() {
+    public function home()
+    {
+
+    }
+
+    public function raffleCrud() 
+    {
         $action = '';
         $this->data['actionTitle'] = 'Rifas';
         $this->data['action'] = '/';
@@ -91,6 +100,80 @@ class Raffle {
         }
 
         return $this->data;
+    }
+
+    public function store()
+    {
+        $raffles = new Database();
+        $this->raffle = $raffles->selectAll('raffles');
+        return $this->raffle;
+    }
+
+    public function about()
+    {
+
+    }
+
+    public function contact()
+    {
+
+    }
+
+    public function partnership()
+    {
+        
+    }
+
+    public function addRaffle()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {     
+            $validate = array();
+            foreach ($_POST as $key => $postData) {
+                if (isset($_POST[$key]) && !empty($_POST[$key])) {
+                    $this->user[$key] = $postData;
+                } else {
+                    $validate['empty'][$key] = "Campo está vazio por favor preencher";
+                }
+            }
+
+            if (count($validate) >= 1) {
+                return $validate;
+            }
+            $uploadedFileName = $_FILES['picture']['name'];
+            $date = date('d/m/Y  H:i:s');
+            $fileExtension = explode('.', $uploadedFileName);
+            $fileExtension = strtolower(end($fileExtension));
+            $fileTmpPath = $_FILES['picture']['tmp_name'];
+            $allowedfileExtensions = array('jpg', 'gif', 'png', 'zip', 'txt', 'xls', 'doc');
+            $fileName = md5($_FILES['picture']['name'] . $date) . '.' . $fileExtension;
+            if (in_array($fileExtension, $allowedfileExtensions)) {
+                $uploadFileDir = "./assets/productsImg/$fileName";
+                $dest_path = $uploadFileDir;
+                $db = new Database();
+                $save = array(
+                    'productName' => $_POST['productName'],
+                    'description' => $_POST['description'],
+                    'participantsQuantity' => $_POST['participantsQuantity'],
+                    'unitaryValue' => $_POST['unitaryValue'],
+                    'picture' => $uploadFileDir,
+                    'created_by' => $_SESSION['Auth']['id'],
+                    'updated' => date('Y-m-d H:i:s'),
+                    'created' => date('Y-m-d H:i:s')
+                );
+                if ($db->save($save, 'raffles') && move_uploaded_file($fileTmpPath, $dest_path)) {
+                    return Flash::flashWithRedirect('Rifa adicionada com sucesso', 'success', 'modulo=Dashboard&acao=index');
+                } 
+            }
+            return Flash::flashWithRedirect('Erro ao adicionar rifa', 'success', 'modulo=Dashboard&acao=index&dashboardRoute=userList');
+        }
+    }
+
+    public function list()
+    {
+        $raffle = new Database();
+        $query = "SELECT users.name, raffles.id, raffles.productName, raffles.description, raffles.participantsQuantity, raffles.unitaryValue, raffles.created_by, raffles.updated, raffles.created FROM users INNER JOIN raffles WHERE users.id = raffles.created_by";
+        $this->raffle = $raffle->makeQuery($query);
+        return $this->raffle;
     }
 
     public function editar() {

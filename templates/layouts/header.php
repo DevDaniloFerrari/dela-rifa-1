@@ -1,14 +1,13 @@
 <head>
+    <title>Dela Rifa</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/navbar.css">
-    <link rel="stylesheet" href="./css/register.css">
-
+    <link rel="shortcut icon" href="assets/favicon.ico" />
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <link rel="shortcut icon" href="assets/favicon.ico" />
-
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
@@ -16,23 +15,44 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/6c03845565.js" crossorigin="anonymous"></script>
+    <script src="./js/navbar.js"></script>
 </head>
 
+<h1 class="d-flex justify-content-center titulo p-0 m-0">Dela Rifa</h1>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Dela Rifa</a>
-    <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNav"
-    aria-controls="navbarNav"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-    >
-    <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse mvc-nav" id="navbarNav">
-        <ul class="navbar-nav ">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto space">
+            <li class="nav-item space">
+                <a id="nav-index" class="nav-link nav-title" href="index.php?modulo=Raffle&acao=home"><i class="fas fa-home"></i> Home </a>
+            </li>
+            <li class="nav-item space">
+                <a id="nav-raffles" class="nav-link cursor-pointer nav-title" href="index.php?modulo=Raffle&acao=store"><i
+                        class="fas fa-box-open"></i>
+                    Rifas</a>
+            </li>
+            <li class="nav-item space">
+                <a id="nav-about" class="nav-link cursor-pointer nav-title" href="index.php?modulo=Raffle&acao=about"><i
+                        class="fas fa-info-circle"></i>
+                    Sobre</a>
+            </li>
+            <li class="nav-item space">
+                <a id="nav-contact" class="nav-link cursor-pointer nav-title" href="index.php?modulo=Raffle&acao=contact"><i
+                        class="far fa-address-card"></i>
+                    Contato</a>
+            </li>
+            <li class="nav-item space">
+                <a id="nav-partnership" class="nav-link cursor-pointer nav-title" href="index.php?modulo=Raffle&acao=partnership"><i
+                        class="fas fa-handshake"></i>
+                    Parcerias</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav navbar-right">
+
         <?php if (!isset($_SESSION['Auth'])): ?>
             <li class="nav-item">
                 <a class="nav-link cursor-pointer" href="index.php?modulo=User&acao=add">Registrar <i class="fas fa-user-plus"></i></a> 
@@ -42,10 +62,15 @@
                 </li>
             <?php else: ?>
                 <li class="nav-item">
+                    <a id="loginBtn" class="nav-link cursor-pointer" href="index.php?modulo=Dashboard&acao=index">Dashboard <i class="fas fa-user-circle"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a id="loginBtn" class="nav-link cursor-pointer" href="index.php?modulo=User&acao=profile">Perfil <i class="fas fa-user-circle"></i></a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link cursor-pointer" href="index.php?modulo=User&acao=logout">Sair <i class="fas fa-sign-out-alt"></i></a> 
                 </li>
             <?php endif; ?>
         </ul>
     </div>
 </nav>
-<br>

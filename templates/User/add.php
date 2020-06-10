@@ -1,5 +1,6 @@
 <body>
     <a href="index.php?modulo=User&acao=login" class="button btn btn-secondary">Voltar</a>
+    <?php require './templates/layouts/header.php'; ?>
 
     <div class="container d-flex justify-content-center">
         <div id="modal">
@@ -10,7 +11,7 @@
                         <hr>
                         <div class="form-group required">
                             <label for="fullName">Nome completo:</label>
-                            <input type="text" class="form-control" value="<?= isset($_POST['Nome']) ? $_POST['Nome'] : ''?>" name="Nome" id="fullName">
+                            <input type="text" class="form-control" value="<?= isset($_POST['Nome']) ? $_POST['Nome'] : ''?>" name="name" id="fullName">
                             <span class="text-danger"><?= isset($data['empty']['Nome']) ? $data['empty']['Nome'] : '' ?></span>
                         </div>
                         <div class="row">
@@ -18,10 +19,9 @@
                                 <div class="form-group required">
                                     <label for="maritalStatus">Estado civil: </label>
                                     <select type="maritalStatus" class="form-control" name="maritalStatus" id="maritalStatus">
-                                        <option value="Solteiro">Solteiro</option>
-                                        <option value="Casado">Casado</option>
-                                        <option value="Separado">Separado</option>
-                                        <option value="Divorciado">Divorciado</option>
+                                        <?php foreach (Configure::read('maritalStatus') as $key => $value): ?>
+                                            <option value="<?= $key ?>"><?= $value ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                             </div>
@@ -29,8 +29,9 @@
                                 <div class="form-group required">
                                     <label for="gender">Sexo:</label>
                                     <select type="text" class="form-control" name="gender" id="gender">
-                                        <option value="Masculino"> Masculino</option>
-                                        <option value="Feminino"> Feminino</option>
+                                        <?php foreach (Configure::read('gender') as $key => $value): ?>
+                                            <option value="<?= $key ?>"><?= $value; ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                             </div>

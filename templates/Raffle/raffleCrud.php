@@ -1,10 +1,10 @@
 <div class="container">
     <h3>Opções</h3>
-    <?php if (isset($_SESSION['messageSuccess'])): ?>
-        <h3 class="text-<?= $_SESSION['messageSuccess']['class']; ?> d-flex justify-content-center">
+    <?php if (isset($_SESSION['flashMessage'])): ?>
+        <h3 class="text-<?= $_SESSION['flashMessage']['class']; ?> d-flex justify-content-center">
             <?php 
-                echo $_SESSION['messageSuccess']['message'];
-                unset($_SESSION['messageSuccess']); 
+                echo $_SESSION['flashMessage']['text'];
+                unset($_SESSION['flashMessage']); 
             ?>
         </h3>
     <?php endif; ?>
@@ -32,14 +32,7 @@
 
     </div>
     <br>
-    <?php if (isset($_SESSION['message'])): ?>
-        <h3 class="text-<?= $data['messageClass']; ?> d-flex justify-content-center">
-            <?php 
-                echo $_SESSION['message'];
-                unset($_SESSION['message']); 
-            ?>
-        </h3>
-    <?php endif; ?>
+   
     <br>
     <br>
     <?php if ($data['action'] == 'listOneRaffle'): ?>

@@ -1,8 +1,12 @@
 <?php
+
+use database\Database;
+
 class User {
     private $user = array();
 
     public function add() {
+        $conection = new Database;
         $validate = [];
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
             foreach ($_POST as $key => $postData) {
@@ -31,21 +35,26 @@ class User {
                 }
             }
 
+            $this->user['password'] = DelaHash::hash($this->user['password']);
+
             if (count($validate) >= 1) {
                 return $validate;
             }
-            $_SESSION[$this->user['email']] = $this->user;
-            $_SESSION['message'] = array(
-                'text' => "Usuário cadastrado com sucesso",
-                'class' => 'success'
-            );
-            header("Location: index.php?modulo=User&acao=login");
-            return $this->user;
+            unset($this->user['confirmEmail']);
+            unset($this->user['confirmPassword']);
+            if ($conection->save($this->user, 'users')) {
+                $_SESSION['message'] = array(
+                    'text' => "Usuário cadastrado com sucesso",
+                    'class' => 'success'
+                );
+                return header("Location: index.php?modulo=User&acao=login");
+            }
         }
     }
 
     public function login() {
         $validate = array();
+
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
             if (!isset($_POST['email']) && empty($_POST['email'])) {
                 $validate['emptyEmail'] = "Por favor preencher o E-mail";
@@ -53,10 +62,6 @@ class User {
 
             if (!isset($_POST['password']) && empty($_POST['password'])) {
                 $validate['emptyPassword'] = "Por favor preencher a senha";
-            }
-
-            if (!isset($_SESSION[$_POST['email']])) {
-                $validate['notExist'] = "Email não cadastrado";
             }
                
             if (count($validate) >= 1) {
@@ -67,20 +72,34 @@ class User {
                 return $validate;
             }
 
-            if ($_POST['email'] == $_SESSION[$_POST['email']]['email'] && $_POST['password'] == $_SESSION[$_POST['email']]['password']) {
-                $_SESSION['Auth'] = $_SESSION[$_POST['email']];
-            } 
-         
-            $_SESSION['messageSuccess'] = array(
-                'message' => "Usuário logado com sucesso",
-                'class' => 'Success'
-            );
-            header("Location: index.php?modulo=Raffle&acao=raffleCrud&raffleAction=addRaffle");
+            $user = new Database();
+            $user = $user->select('users', 'email', $_POST['email']);
+
+            if (!empty($user) && DelaHash::check($_POST['password'], $user['password'])) {
+                unset($user['password']);
+                $_SESSION['Auth'] = $user;
+                return Flash::flashWithRedirect('Usuário autenticado com sucesso', 'success', 'modulo=Raffle&acao=raffleCrud&raffleAction=addRaffle');
+            }
+            return Flash::flashWithRedirect('Usuário ou senha incorretos', 'error', 'modulo=User&acao=login');
         }
     }
 
-    public function logout() {
+    public function profile() 
+    {
+        $user = new Database();
+        $this->user = $user->select('users', 'id', $_SESSION['Auth']['id']);
+        return $this->user;
+    }
+
+    public function logout()
+    {
         unset($_SESSION['Auth']);
         header("Location: index.php?modulo=User&acao=login");
+    }
+
+    public function list()
+    {
+        $users = new Database();
+        $this->user = $users->selectAll('users');
     }
 }
