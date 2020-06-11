@@ -82,25 +82,29 @@
         <h2 class="text-center"> Fundadores </h2>
         <hr>
         <div class="row">
-            <div id="cv-danilo" class="col-sm text-center hover">
+            <div class="col-sm text-center hover">
                 <img src="https://user-images.githubusercontent.com/40414119/79511193-2adcbf80-8015-11ea-9a6e-80f9eb05af34.jpg"
                     class="rounded-circle" alt="Cinque Terre">
                 <p><strong>Danilo Ferrai</strong></p>
+                <button id="cv-danilo" class="btn btn-secondary">Currículo <i class="far fa-file-alt"></i></button>
             </div>
-            <div id="cv-lucas" class="col-sm text-center hover">
+            <div class="col-sm text-center hover">
                 <img src="https://user-images.githubusercontent.com/40414119/76591262-98ee0e00-64ce-11ea-96a3-4d0860172afd.jpeg"
                     class="rounded-circle" alt="Cinque Terre">
                 <p><strong>Lucas Oliveira</strong></p>
+                <button id="cv-lucas" class="btn btn-secondary">Currículo <i class="far fa-file-alt"></i></button>
             </div>
-            <div id="cv-manoel" class="col-sm text-center hover">
+            <div class="col-sm text-center hover">
                 <img src="https://user-images.githubusercontent.com/40414119/76591396-01d58600-64cf-11ea-9773-b855b73a96e2.jpeg"
                     class="rounded-circle" alt="Cinque Terre">
                 <p><strong>Manoel Merlin</strong></p>
+                <button id="cv-manoel" class="btn btn-secondary">Currículo <i class="far fa-file-alt"></i></button>
             </div>
-            <div id="cv-kim" class="col-sm text-center hover">
+            <div class="col-sm text-center hover">
                 <img src="https://user-images.githubusercontent.com/40414119/79506346-2c55ba00-800c-11ea-8906-acf6afb85f62.png"
                     class="rounded-circle" alt="Cinque Terre">
                 <p><strong>Kim Kokubun</strong></p>
+                <button id="cv-kim" class="btn btn-secondary">Currículo <i class="far fa-file-alt"></i></button>
             </div>
         </div>
         <div class="row">
