@@ -62,13 +62,13 @@
                 </li>
             <?php else: ?>
                 <li class="nav-item">
-                    <a id="loginBtn" class="nav-link cursor-pointer" href="index.php?modulo=Dashboard&acao=index">Dashboard <i class="fas fa-user-circle"></i></a>
+                    <a id="loginBtn" class="nav-link cursor-pointer" href="index.php?modulo=Dashboard&acao=index"><i class="fas fa-chart-line"></i> Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a id="loginBtn" class="nav-link cursor-pointer" href="index.php?modulo=User&acao=profile">Perfil <i class="fas fa-user-circle"></i></a>
+                    <a id="loginBtn" class="nav-link cursor-pointer" href="index.php?modulo=User&acao=profile"><i class="fas fa-user-circle"></i> Perfil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link cursor-pointer" href="index.php?modulo=User&acao=logout">Sair <i class="fas fa-sign-out-alt"></i></a> 
+                    <a class="nav-link cursor-pointer" href="index.php?modulo=User&acao=logout"><i class="fas fa-sign-out-alt"></i> Sair</a> 
                 </li>
             <?php endif; ?>
         </ul>
