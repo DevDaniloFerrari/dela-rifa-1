@@ -8,7 +8,7 @@
             <div class="col">
                 <div class="card">
                     <img class="card-img-top"
-                        src='https://pbs.twimg.com/profile_images/1207310445331329024/t1Q69r3l_400x400.jpg'
+                        src='https://lagesgardenshopping.com.br/wp-content/uploads/2016/05/0d222d04-e60e-44e1-9e73-652b6315b253.png'
                         alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Americanas</h5>
