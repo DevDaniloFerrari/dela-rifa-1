@@ -77,7 +77,7 @@
                             <div class="col">
                                 <div class="form-group required">
                                     <label for="postalCode">CEP:</label>
-                                    <input type="text" maxlength="8" class="form-control" value="<?= isset($_POST['postalCode']) ? $_POST['postalCode'] : ''?>" name="postalCode" id="postalCode">
+                                    <input onblur="verificarCep()" type="text" maxlength="8" class="form-control" value="<?= isset($_POST['postalCode']) ? $_POST['postalCode'] : ''?>" name="postalCode" id="postalCode">
                                     <div class="text-danger">
                                         <?php
                                         if (isset($data['empty']['postalCode'])) {
@@ -104,8 +104,8 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group required">
-                                    <label for="street">Rua:</label>
-                                    <input type="text" class="form-control" value="<?= isset($_POST['street']) ? $_POST['street'] : ''?>" name="street" id="street">
+                                    <label for="street">Logradouro:</label>
+                                    <input readonly type="text" class="form-control" value="<?= isset($_POST['street']) ? $_POST['street'] : ''?>" name="street" id="street">
                                     <div class="text-danger">
                                         <?php
                                         if (isset($data['empty']['street'])) {
@@ -118,7 +118,7 @@
                             <div class="col">
                                 <div class="form-group required">
                                     <label for="neighborhood">Bairro:</label>
-                                    <input type="text" class="form-control" value="<?= isset($_POST['neighborhood']) ? $_POST['neighborhood'] : ''?>" name="neighborhood" id="neighborhood">
+                                    <input readonly type="text" class="form-control" value="<?= isset($_POST['neighborhood']) ? $_POST['neighborhood'] : ''?>" name="neighborhood" id="neighborhood">
                                     <div class="text-danger">
                                         <?php
                                         if (isset($data['empty']['neighborhood'])) {
@@ -133,7 +133,7 @@
                             <div class="col">
                                 <div class="form-group required">
                                     <label for="state">Estado:</label>
-                                    <input type="text" class="form-control" value="<?= isset($_POST['state']) ? $_POST['state'] : ''?>" name="state" id="state">
+                                    <input readonly type="text" class="form-control" value="<?= isset($_POST['state']) ? $_POST['state'] : ''?>" name="state" id="state">
                                     <div class="text-danger">
                                         <?php
                                         if (isset($data['empty']['state'])) {
@@ -146,7 +146,7 @@
                             <div class="col">
                                 <div class="form-group required">
                                     <label for="city">Cidade:</label>
-                                    <input type="text" class="form-control" value="<?= isset($_POST['city']) ? $_POST['city'] : ''?>" name="city" id="city">
+                                    <input readonly type="text" class="form-control" value="<?= isset($_POST['city']) ? $_POST['city'] : ''?>" name="city" id="city">
                                     <div class="text-danger">
                                         <?php
                                         if (isset($data['empty']['city'])) {
@@ -256,4 +256,38 @@
             </div>
         </div>
     </div>
+    <script>
+        function verificarCep(){
+            var cep = document.getElementById('postalCode').value;
+
+            var url = `https://viacep.com.br/ws/${cep}/json/`;
+            var request = new XMLHttpRequest();
+
+            request.onerror = function () {
+                alert("CEP inválido");
+                document.forms["registerForm"]["postalCode"].value = "";
+                document.forms["registerForm"]["street"].value = "";
+                document.forms["registerForm"]["neighborhood"].value = "";
+                document.forms["registerForm"]["state"].value = "";
+                document.forms["registerForm"]["city"].value = "";
+            };
+
+            request.open('GET', url, true);
+            request.onload = function () {
+                var data = JSON.parse(this.response);
+
+                if (request.status >= 200 && request.status < 400) {
+                    document.forms["registerForm"]["street"].value = data.logradouro;
+                    document.forms["registerForm"]["neighborhood"].value = data.bairro;
+                    document.forms["registerForm"]["city"].value = data.localidade;
+                    document.forms["registerForm"]["state"].value = data.uf;
+                } else {
+                    alert("Erro interno contate um administrador");
+
+                }
+            };
+
+            request.send();
+        }
+    </script>
 </body>
