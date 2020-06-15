@@ -23,6 +23,11 @@ class Dashboard {
                     $data = $raffle->list();
                     require './templates/Raffle/list.php';
                     break;
+                case 'raffleEdit':
+                    $raffle = new Raffle();
+                    $data = $raffle->edit();
+                    require './templates/Raffle/edit.php';
+                    break;
             }
         }
     }

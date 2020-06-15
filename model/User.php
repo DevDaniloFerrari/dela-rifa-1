@@ -78,7 +78,7 @@ class User {
             if (!empty($user) && DelaHash::check($_POST['password'], $user['password'])) {
                 unset($user['password']);
                 $_SESSION['Auth'] = $user;
-                return Flash::flashWithRedirect('Usuário autenticado com sucesso', 'success', 'modulo=Raffle&acao=raffleCrud&raffleAction=addRaffle');
+                return Flash::flashWithRedirect('Usuário autenticado com sucesso', 'success', 'modulo=Raffle&acao=store');
             }
             return Flash::flashWithRedirect('Usuário ou senha incorretos', 'error', 'modulo=User&acao=login');
         }

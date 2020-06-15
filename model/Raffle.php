@@ -2,17 +2,17 @@
 
 use database\Database;
 
-class Raffle {
-    
+class Raffle
+{
+
     public $data = array();
     private $raffle = array();
 
     public function home()
     {
-
     }
 
-    public function raffleCrud() 
+    public function raffleCrud()
     {
         $action = '';
         $this->data['actionTitle'] = 'Rifas';
@@ -23,7 +23,7 @@ class Raffle {
         }
         $this->data['action'] = $action;
 
-        switch($action) {
+        switch ($action) {
             case 'listAll':
                 if (isset($_SESSION['raffles'])) {
                     $this->data['raffles'] = $_SESSION['raffles'];
@@ -53,14 +53,14 @@ class Raffle {
                     if (isset($_SESSION['raffles']) && !empty($_SESSION['raffles'])) {
                         $lastId = end($_SESSION['raffles']);
                         $id = $lastId['id'] + 1;
-                    } 
-                        $this->raffle = array(
-                            'id' => $id,
-                            'productName' => $_POST['productName'],
-                            'participantsQuantity' => $_POST['participantsQuantity'],
-                            'unitaryValue' => $_POST['unitaryValue']
-                        );
-                        $_SESSION['raffles'][$id] = $this->raffle;
+                    }
+                    $this->raffle = array(
+                        'id' => $id,
+                        'productName' => $_POST['productName'],
+                        'participantsQuantity' => $_POST['participantsQuantity'],
+                        'unitaryValue' => $_POST['unitaryValue']
+                    );
+                    $_SESSION['raffles'][$id] = $this->raffle;
 
                     $_SESSION['message'] = "Rifa adicionada com sucesso";
                     $this->data['messageClass'] = 'success';
@@ -70,12 +70,12 @@ class Raffle {
             case 'editRaffle';
                 if ($_SERVER['REQUEST_METHOD'] === "POST") {
                     if (isset($_SESSION['raffles'][$_POST['raffleEdit']])) {
-                       $_SESSION['raffles'][$_POST['raffleEdit']]['id'] = $_POST['raffleEdit'];
-                       $_SESSION['raffles'][$_POST['raffleEdit']]['productName'] = $_POST['productName'];
-                       $_SESSION['raffles'][$_POST['raffleEdit']]['participantsQuantity'] = $_POST['participantsQuantity'];
-                       $_SESSION['raffles'][$_POST['raffleEdit']]['unitaryValue'] = $_POST['unitaryValue'];
-                       $_SESSION['message'] = "Rifa editada com sucesso";
-                       $this->data['messageClass'] = 'success';
+                        $_SESSION['raffles'][$_POST['raffleEdit']]['id'] = $_POST['raffleEdit'];
+                        $_SESSION['raffles'][$_POST['raffleEdit']]['productName'] = $_POST['productName'];
+                        $_SESSION['raffles'][$_POST['raffleEdit']]['participantsQuantity'] = $_POST['participantsQuantity'];
+                        $_SESSION['raffles'][$_POST['raffleEdit']]['unitaryValue'] = $_POST['unitaryValue'];
+                        $_SESSION['message'] = "Rifa editada com sucesso";
+                        $this->data['messageClass'] = 'success';
                     } else {
                         $_SESSION['message'] = "Nenhuma rifa encontrada com o ID solicitado, por favor tente novamente";
                         $this->data['messageClass'] = 'danger';
@@ -118,27 +118,27 @@ class Raffle {
 
     public function about()
     {
-
     }
 
     public function contact()
     {
-
     }
 
     public function partnership()
     {
-        
     }
 
     public function participate()
     {
+    }
 
+    public function order()
+    {
     }
 
     public function addRaffle()
     {
-        if ($_SERVER['REQUEST_METHOD'] === "POST") {     
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $validate = array();
             foreach ($_POST as $key => $postData) {
                 if (isset($_POST[$key]) && !empty($_POST[$key])) {
@@ -174,7 +174,7 @@ class Raffle {
                 );
                 if ($db->save($save, 'raffles') && move_uploaded_file($fileTmpPath, $dest_path)) {
                     return Flash::flashWithRedirect('Rifa adicionada com sucesso', 'success', 'modulo=Dashboard&acao=index');
-                } 
+                }
             }
             return Flash::flashWithRedirect('Erro ao adicionar rifa', 'success', 'modulo=Dashboard&acao=index&dashboardRoute=userList');
         }
@@ -190,18 +190,53 @@ class Raffle {
 
     public function delete()
     {
-        return $_GET;
         $id = $_GET['raffleId'];
         $raffle = new Database();
-        if ($raffle->delete('raffle', $id)) {
+        if ($raffle->delete('raffles', $id)) {
             return Flash::flashWithRedirect('Sucesso ao deletar rifa', 'success', 'modulo=Dashboard&acao=index&dashboardRoute=raffleList');
         }
         return Flash::flashWithRedirect('Erro ao deletar rifa', 'error', 'modulo=Dashboard&acao=index&dashboardRoute=raffleList');
     }
 
-    public function editar() {
+    public function editar()
+    {
         header('Content-Type: application/json');
         header('Access-Control-Allow-Origin: *');
+    }
+
+    public function edit()
+    {
+        $id = $_GET['raffleId'];
+        $raffle = new Database();
+        $this->raffle = $raffle->select('raffles', 'id', $id);
+        $this->raffle['raffleId'] = $id;
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {     
+            if ($raffle->update('raffles', $_POST, $id)) {
+                return Flash::flashWithRedirect('Sucesso ao deletar rifa', 'success', 'modulo=Dashboard&acao=index&dashboardRoute=raffleList');
+            }
+            return Flash::flashWithRedirect('Erro ao deletar rifa', 'success', 'modulo=Dashboard&acao=index&dashboardRoute=raffleList');
+        }
+        return $this->raffle;
+        
+    }
+
+    public function viewProduct()
+    {
+        $id = $_GET['productId'];
+        $raffle = new Database();
+        $this->raffle = $raffle->select('raffles', 'id', $id);
+        return $this->raffle;
+    }
+
+    public function cart()
+    {
+        $cart = array();
+        return json_encode("aqui");
+    }
+
+    public function pay() 
+    {
+
     }
 
 } 

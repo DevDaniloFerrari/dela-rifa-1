@@ -167,3 +167,10 @@ a.article:hover {
         display: none;
     }
 }
+
+.preview-img {
+    max-width : 30px;
+    height: 50px;
+    object-fit: contain;
+    position: relative;
+}
