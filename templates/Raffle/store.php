@@ -32,7 +32,7 @@
                         <p class="card-text"><?= $raffle['description'] ?></p>
                         <p><i class="fas fa-users"></i> Participantes : <?= $raffle['participantsQuantity'] ?></p>
                         <p><i class="fas fa-money-check-alt"></i> Valor: R$ <?= $raffle['unitaryValue'] ?></p>
-                        <button class="mt-auto btn btn-lg btn-block btn-primary"> Participar</button>
+                        <a class="mt-auto btn btn-lg btn-block btn-primary" href="index.php?modulo=Raffle&acao=participate">Participar</a>
                     </div>
                 </div>
                 <br>
