@@ -1,13 +1,6 @@
 <div class="container">
     <h3>Opções</h3>
-    <?php if (isset($_SESSION['flashMessage'])): ?>
-        <h3 class="text-<?= $_SESSION['flashMessage']['class']; ?> d-flex justify-content-center">
-            <?php 
-                echo $_SESSION['flashMessage']['text'];
-                unset($_SESSION['flashMessage']); 
-            ?>
-        </h3>
-    <?php endif; ?>
+  
     <div class="col-12 border p-2 row m-0">
         <div class="col-md-2 p-2">
             <a href="index.php?modulo=Raffle&acao=raffleCrud&raffleAction=addRaffle" class="btn btn-success"> <i class="fas fa-edit"></i>Adicionar rifa</a>
