@@ -131,6 +131,11 @@ class Raffle {
         
     }
 
+    public function participate()
+    {
+
+    }
+
     public function addRaffle()
     {
         if ($_SERVER['REQUEST_METHOD'] === "POST") {     
