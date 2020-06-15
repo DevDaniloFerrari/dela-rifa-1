@@ -36,8 +36,8 @@
                     Ações
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Editar</a>
-                    <a class="dropdown-item" onclick="deleteRaffle(<?= $raffle['id'] ?>)">Apagar</a>
+                    <a class="dropdown-item" href="index.php?modulo=Dashboard&acao=index&dashboardRoute=raffleEdit&raffleId=<?= $raffle['id'] ?>">Editar</a>
+                    <a class="dropdown-item" onclick="return confirm('Você tem certeza que deseja deletar essa rifa ? ');" href="index.php?modulo=Raffle&acao=delete&raffleId=<?= $raffle['id'] ?>">Apagar</a>
                 </div>
                 </div>
             </td>
@@ -45,44 +45,3 @@
     <?php endforeach; ?>
   </tbody>
 </table>
-
-<div id="deleteConfirm" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Confirmar</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p class="text-danger">Tem certeza que deseja deletar está rifa ? </p>
-      </div>
-      <input id="raffle-id" type="hidden">
-      <div class="modal-footer d-flex justify-content-center">
-        <button type="button" id="confirm-true" class="btn btn-danger p-3">Sim</button>
-        <button type="button" id="confirm-false" class="btn btn-primary p-3" data-dismiss="modal">Não</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-    function deleteRaffle(id) {
-        $('#deleteConfirm').modal('show');
-        $('#raffle-id').val(id)
-    }
-
-    $('#confirm-true').on('click', function() {
-        let raffleId = $('#raffle-id').val();
-        $.ajax({
-            type: 'GET',
-            url: 'teste.php',
-            success: dados => {
-                console.log(dados)
-            },
-            error:  erro => {console.log(erro)}
-        });
-    });
-
-</script>

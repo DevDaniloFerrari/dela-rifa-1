@@ -45,10 +45,9 @@ class Configure {
             ),
             'categories' => array(
                 1 => 'administrador',
-                2 => 'vendedor',
-                3 => 'suporte',
-                4 => 'cliente',
-                5 => 'tester'
+                2 => 'tester',
+                3 => 'visitante',
+                4 => 'cliente'
             ),
 
         );

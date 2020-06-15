@@ -132,10 +132,6 @@ class Raffle
     {
     }
 
-    public function cart()
-    {
-    }
-
     public function order()
     {
     }
@@ -194,10 +190,9 @@ class Raffle
 
     public function delete()
     {
-        return $_GET;
         $id = $_GET['raffleId'];
         $raffle = new Database();
-        if ($raffle->delete('raffle', $id)) {
+        if ($raffle->delete('raffles', $id)) {
             return Flash::flashWithRedirect('Sucesso ao deletar rifa', 'success', 'modulo=Dashboard&acao=index&dashboardRoute=raffleList');
         }
         return Flash::flashWithRedirect('Erro ao deletar rifa', 'error', 'modulo=Dashboard&acao=index&dashboardRoute=raffleList');
@@ -208,4 +203,40 @@ class Raffle
         header('Content-Type: application/json');
         header('Access-Control-Allow-Origin: *');
     }
-}
+
+    public function edit()
+    {
+        $id = $_GET['raffleId'];
+        $raffle = new Database();
+        $this->raffle = $raffle->select('raffles', 'id', $id);
+        $this->raffle['raffleId'] = $id;
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {     
+            if ($raffle->update('raffles', $_POST, $id)) {
+                return Flash::flashWithRedirect('Sucesso ao deletar rifa', 'success', 'modulo=Dashboard&acao=index&dashboardRoute=raffleList');
+            }
+            return Flash::flashWithRedirect('Erro ao deletar rifa', 'success', 'modulo=Dashboard&acao=index&dashboardRoute=raffleList');
+        }
+        return $this->raffle;
+        
+    }
+
+    public function viewProduct()
+    {
+        $id = $_GET['productId'];
+        $raffle = new Database();
+        $this->raffle = $raffle->select('raffles', 'id', $id);
+        return $this->raffle;
+    }
+
+    public function cart()
+    {
+        $cart = array();
+        return json_encode("aqui");
+    }
+
+    public function pay() 
+    {
+
+    }
+
+} 

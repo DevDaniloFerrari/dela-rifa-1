@@ -1,1 +1,3 @@
-<h1>carrinho</h1>
+<?php 
+
+pr($_SESSION);

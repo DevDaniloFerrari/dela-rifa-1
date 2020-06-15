@@ -5,7 +5,7 @@ class Database {
     private $host = 'localhost';
     private $user = 'root';
     private $password = '';
-    private $database = 'delarifa';
+    private $database = 'dela-rifa';
     private $conection;
 
     public function __construct()
@@ -57,7 +57,23 @@ class Database {
 
     public function delete($table, $id)
     {
-        $query = "DELETE FROM $table where id = " . $id ."";
+        $query = "DELETE FROM $table where id = $id";
+        $stmt = $this->conection->prepare($query);
+        $stmt->execute();
+        $stmt->close();
+        return ($stmt->affected_rows === 1) ? true : false;
+    }
+
+    public function update($table, $data, $id)
+    {
+        $updateQuery = '';
+        $arrayLength = count($data);
+        $countLoop = 0;
+        foreach ($data as $key => $value) {
+            $countLoop ++;
+            $updateQuery .= ($arrayLength - $countLoop < 1) ?  "$key = '$value'" : "$key = '$value'" . ",";;
+        }
+        $query = "UPDATE $table SET $updateQuery WHERE id = $id";
         $stmt = $this->conection->prepare($query);
         $stmt->execute();
         return ($stmt->affected_rows === 1) ? true : false;
