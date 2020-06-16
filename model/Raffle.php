@@ -230,8 +230,8 @@ class Raffle
 
     public function cart()
     {
-        if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
-            pr($_SESSION['cart']);
+        if (isset($_SESSION['Cart']) && !empty($_SESSION['Cart'])) {
+            pr($_SESSION['Cart']);
         }
     }
 
