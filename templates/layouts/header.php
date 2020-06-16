@@ -63,6 +63,12 @@
                 </li>
             <?php else: ?>
                 <li class="nav-item">
+                    <a id="loginBtn" class="nav-link cursor-pointer" href="index.php?modulo=Raffle&acao=order"><i class="fas fa-clipboard-list"></i> Pedidos</a>
+                </li>
+                <li class="nav-item">
+                    <a id="loginBtn" class="nav-link cursor-pointer" href="index.php?modulo=Raffle&acao=cart"><i class="fas fa-shopping-cart"></i> Carrinho</a>
+                </li>
+                <li class="nav-item">
                     <a id="loginBtn" class="nav-link cursor-pointer" href="index.php?modulo=Dashboard&acao=index"><i class="fas fa-chart-line"></i> Dashboard</a>
                 </li>
                 <li class="nav-item">
