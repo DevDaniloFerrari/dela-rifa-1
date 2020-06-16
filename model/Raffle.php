@@ -232,6 +232,11 @@ class Raffle
     {
         if (isset($_SESSION['Cart']) && !empty($_SESSION['Cart'])) {
             pr($_SESSION['Cart']);
+
+            $raffle = new Database();
+            $this->raffle = $raffle->select('raffles', 'id', $_SESSION['Cart']['productId']);
+            return $this->raffle;
+
         }
     }
 
