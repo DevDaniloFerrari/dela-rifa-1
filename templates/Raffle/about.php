@@ -132,7 +132,7 @@
                     Segurança</ul>
             </div>
         </div>
-    </div><br>
+    </div>
     <?php require './templates/layouts/footer.php'; ?>
 </body>
 
