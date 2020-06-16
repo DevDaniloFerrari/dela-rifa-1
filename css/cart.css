@@ -1,0 +1,17 @@
+.card-img-top {
+    max-width: 100%;
+}
+
+#border {
+    width: auto;
+    text-align: left;
+    background: #fff;
+    border-radius: 10px;
+    -webkit-box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.39);
+    -moz-box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.39);
+    box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.39);
+    padding: 15px;
+    margin:  10px;
+    font-size: 1em;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+}

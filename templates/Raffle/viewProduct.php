@@ -145,7 +145,9 @@
             data: `dataCart=${dataPost}`,
             dataType: 'json',
             success: dados => {
-                console.log(dados);
+                if (dados.code === 200) {
+                    window.location = "?modulo=Raffle&acao=cart";
+                }
             },
             error: erro => {
                 console.log(erro)

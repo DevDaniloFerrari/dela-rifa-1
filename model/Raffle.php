@@ -5,6 +5,7 @@ use database\Database;
 class Raffle
 {
 
+    public $cart = array();
     public $data = array();
     private $raffle = array();
 
@@ -210,14 +211,13 @@ class Raffle
         $raffle = new Database();
         $this->raffle = $raffle->select('raffles', 'id', $id);
         $this->raffle['raffleId'] = $id;
-        if ($_SERVER['REQUEST_METHOD'] === "POST") {     
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
             if ($raffle->update('raffles', $_POST, $id)) {
                 return Flash::flashWithRedirect('Sucesso ao deletar rifa', 'success', 'modulo=Dashboard&acao=index&dashboardRoute=raffleList');
             }
             return Flash::flashWithRedirect('Erro ao deletar rifa', 'success', 'modulo=Dashboard&acao=index&dashboardRoute=raffleList');
         }
-        return $this->raffle;
-        
+        return $this->raffle;   
     }
 
     public function viewProduct()
@@ -230,13 +230,12 @@ class Raffle
 
     public function cart()
     {
-        $cart = array();
-        return json_encode("aqui");
+        if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+            pr($_SESSION['cart']);
+        }
     }
 
-    public function pay() 
+    public function pay()
     {
-
     }
-
-} 
+}
