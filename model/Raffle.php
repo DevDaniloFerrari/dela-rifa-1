@@ -215,8 +215,7 @@ class Raffle {
             }
             return Flash::flashWithRedirect('Erro ao deletar rifa', 'success', 'modulo=Dashboard&acao=index&dashboardRoute=raffleList');
         }
-        return $this->raffle;
-        
+        return $this->raffle;   
     }
 
     public function viewProduct()
