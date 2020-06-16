@@ -1,33 +1,38 @@
 <div class="col-12 p-2 mt-5">
     <div class='row m-0'>
-        <div class="col-12 mb-4">
-            <div class="mb-2 d-flex justify-content-center raffle-tittle">
-                <?= $data['productName']; ?>
-            </div>   
+
+        <div class="col-6">
+            <div id="modal">
+                <div class="product-img mt-2 d-flex justify-content-center card">
+                    <img class="card-img-top" src="<?= $data['picture']; ?>" alt="produto" alt="Card image cap">
+                </div>
+            </div><br>
+            <p>Descrição: Produto original e direto da fábrica, acompanhando garantia de 3 meses (caso ocorra algum defeito ou falha).
+                Não nos responsabilizamos se o produto for vendido para terceiros, só mantemos contato com o titular da compra.
+                Caso tenha alguma dúvida, contate nosso suporte. A equipe Dela Rifa está a disposição. Boa sorte! =) </p>
         </div>
 
-        <div class="col-6 border-dark border-right">        
-            <div class="product-img mt-2 d-flex justify-content-center">
-                <img src="<?= $data['picture']; ?>" alt="produto" style="width:450px;height:110px">
+        <div class="col-6">
+            <div class="col-12 mb-4">
+                <div class="mb-2 d-flex justify-content-center raffle-tittle">
+                    <?= $data['productName']; ?>
+                </div>
             </div>
-        </div>
-
-        <div class="col-6">        
             <div class="row m-0 border-bottom p-3">
                 <div class="col-6 d-flex justify-content-center">
-                    Participantes : <?= $data['participantsQuantity']; ?>
-                </div>    
+                    <b>Participantes :</b> <?= $data['participantsQuantity']; ?>
+                </div>
                 <div class="col-6 d-flex justify-content-center">
-                    Restante : <?= $data['participantsQuantity']; ?>
-                </div>  
+                    <b>Restante :</b> <?= $data['participantsQuantity']; ?>
+                </div>
             </div>
             <div class="col-12 d-flex justify-content-center p-2">
-                Escolha uma ou mais rifas na cartilha abaixo
+                Escolha uma ou mais rifas da cartela abaixo
             </div>
 
             <div class="border p-3">
                 <div class="row m-0">
-                    <?php for ($i = 1; $i <= $data['participantsQuantity']; $i ++): ?>
+                    <?php for ($i = 1; $i <= $data['participantsQuantity']; $i++) : ?>
                         <div id="raffle-n-<?= $i; ?>" onclick="checkRaffle(<?= $i; ?>, <?= $data['id']; ?>)" class="border p-2 ml-1 mt-2 d-flex justify-content-center raffle-number">
                             <?= $i; ?>
                         </div>
@@ -36,24 +41,21 @@
             </div>
 
             <div class="col-12 d-flex justify-content-start mt-2">
-                Números escolhidos : <span id="chosen-numbers"></span>
-            </div>
+                <b>Números escolhidos :</b> <span id="chosen-numbers"></span>
+            </div><hr>
 
             <div class="col-12 raffle-value d-flex justify-content-center mt-4">
-                Valor cartela : R$ <?= $data['unitaryValue']; ?>
+                Valor Rifa : R$ <?= $data['unitaryValue']; ?>
+            </div> <hr>
+
+            <div class="col-12 d-flex justify-content-center mt-4">
+                <a id="btn-cart" class="btn btn-success btn-cart" style="width: 500px; height: 50px; font-size:24px" href="#"><i class="fas fa-shopping-cart"> Adicionar ao carrinho</i></a>
             </div>
 
             <div class="col-12 d-flex justify-content-center mt-4">
-                <a id="btn-cart" class="btn btn-primary btn-cart" style="width: 500px; height: 50px; font-size:24px" href="#">Adicionar ao carrinho</a>
-            </div>
-
-            <div class="col-12 d-flex justify-content-center mt-4">
-                <a id="btn-part" class="btn btn-primary btn-part" style="width: 500px; height: 50px; font-size:24px" href="#">Finalizar compra</a>
+                <a id="btn-part" class="btn btn-success btn-part" style="width: 500px; height: 50px; font-size:24px" href="#"><i class="fas fa-check"> Finalizar compra</i></a>
             </div>
         </div>
-    </div>
-    <div class="col-6 text-center mt-5">
-        detalhes do produto
     </div>
 </div>
 
@@ -61,7 +63,7 @@
     let productGetId = '<?= $_GET['productId']; ?>';
     let raffles = [];
     let rafflesMark = localStorage.getItem(`raffle-${productGetId}`);
-    
+
     $(document).ready(function() {
         if (rafflesMark != null) {
             if (rafflesMark.includes(',')) {
@@ -128,12 +130,10 @@
         }
     });
 
-    let dataPost = [
-        {
-            productId : productGetId, 
-            raffles : localStorage.getItem(`raffle-${productGetId}`)
-        },
-    ];
+    let dataPost = [{
+        productId: productGetId,
+        raffles: localStorage.getItem(`raffle-${productGetId}`)
+    }, ];
 
     dataPost = JSON.stringify(dataPost);
 
@@ -147,8 +147,9 @@
             success: dados => {
                 console.log(dados);
             },
-            error:  erro => {console.log(erro)}
+            error: erro => {
+                console.log(erro)
+            }
         });
     });
-
 </script>
