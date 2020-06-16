@@ -132,9 +132,6 @@
         }
     });
 
-
-
-
     $("#btn-cart").on('click', function() {
         let dataPost = [{
             productId: productGetId,

@@ -45,3 +45,8 @@ footer {
     opacity : 0.5;
     color: blue;
 }
+
+.cart-empty {
+    margin-top: 210px;
+    height: 300px;
+}

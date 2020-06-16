@@ -5,7 +5,7 @@ class Database {
     private $host = 'localhost';
     private $user = 'root';
     private $password = '';
-    private $database = 'delarifa';
+    private $database = 'dela-rifa';
     private $conection;
 
     public function __construct()
