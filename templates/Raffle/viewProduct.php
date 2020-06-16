@@ -42,11 +42,13 @@
 
             <div class="col-12 d-flex justify-content-start mt-2">
                 <b>Números escolhidos :</b> <span id="chosen-numbers"></span>
-            </div><hr>
+            </div>
+            <hr>
 
             <div class="col-12 raffle-value d-flex justify-content-center mt-4">
                 Valor Rifa : R$ <?= $data['unitaryValue']; ?>
-            </div> <hr>
+            </div>
+            <hr>
 
             <div class="col-12 d-flex justify-content-center mt-4">
                 <a id="btn-cart" class="btn btn-success btn-cart" style="width: 500px; height: 50px; font-size:24px" href="#"><i class="fas fa-shopping-cart"> Adicionar ao carrinho</i></a>
@@ -130,14 +132,15 @@
         }
     });
 
-    let dataPost = [{
-        productId: productGetId,
-        raffles: localStorage.getItem(`raffle-${productGetId}`)
-    }, ];
 
-    dataPost = JSON.stringify(dataPost);
+
 
     $("#btn-cart").on('click', function() {
+        let dataPost = [{
+            productId: productGetId,
+            raffles: localStorage.getItem(`raffle-${productGetId}`)
+        }, ];
+        dataPost = JSON.stringify(dataPost);
         editId = $(this).val();
         $.ajax({
             type: 'POST',
