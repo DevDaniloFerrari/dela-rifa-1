@@ -231,16 +231,21 @@ class Raffle
     public function cart()
     {
         if (isset($_SESSION['Cart']) && !empty($_SESSION['Cart'])) {
-            pr($_SESSION['Cart']);
-
-            $raffle = new Database();
-            $this->raffle = $raffle->select('raffles', 'id', $_SESSION['Cart']['productId']);
+            $cart = $_SESSION['Cart'];
+            $cartItems = array();
+            foreach ($cart as $key => $value) {
+                $raffle = new Database();
+                $this->raffle[$value['productId']] = $raffle->select('raffles', 'id', $value['productId']);
+                $explodeCartItems = explode(',', $value['raffleNumbers']);
+                $cartItems = $explodeCartItems;
+                $this->raffle[$value['productId']]['rafflesToBuy'] = $cartItems;
+            }
             return $this->raffle;
-
         }
     }
 
     public function pay()
     {
     }
+    
 }
