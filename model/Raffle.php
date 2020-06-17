@@ -230,6 +230,46 @@ class Raffle
 
     public function cart()
     {
+        return $this->returnCartItems();
+    }
+
+    public function pay()
+    {
+        $rafflePay = array();
+        $validate = array();
+        $save = array();
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            foreach ($_POST as $key => $postData) {
+                if (isset($_POST[$key]) && !empty($_POST[$key])) {
+                    $rafflePay[$key] = $postData;
+                } else {
+                    $validate['empty'][$key] = "Campo está vazio por favor preencher";
+                }
+            }
+       
+            if (isset($_SESSION['Cart']) && !empty($_SESSION['Cart'])) {
+                foreach ($_POST['raffles'] as $k => $value) {
+                    foreach ($value as $key => $data) {
+                        $save = array(
+                            'product_id' => $k,
+                            'raffle_number'=> $data,
+                            'user_id' => $_SESSION['Auth']['id'],
+                            'created' => date('Y-m-d H:i:s')
+                        );
+                        $raffle = new Database();
+                        if ($raffle->save($save, 'buy_raffles')) {
+                            unset($_SESSION['Cart'][$k]);
+                        }
+                    }
+                }
+            }
+        }
+        pr($_SESSION['Cart']);
+        return $this->returnCartItems();
+    }
+
+    public function returnCartItems()
+    {
         if (isset($_SESSION['Cart']) && !empty($_SESSION['Cart'])) {
             $cart = $_SESSION['Cart'];
             $cartItems = array();
@@ -240,12 +280,8 @@ class Raffle
                 $cartItems = $explodeCartItems;
                 $this->raffle[$value['productId']]['rafflesToBuy'] = $cartItems;
             }
-            return $this->raffle;
         }
-    }
-
-    public function pay()
-    {
+        return $this->raffle;
     }
     
 }

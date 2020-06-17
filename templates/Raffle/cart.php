@@ -35,12 +35,12 @@
                     <h6><?= $totalPrice; ?> R$</h6>
                 </div>
                 <div class="col-6">
-                    <button class="btn btn-success btn-lg btn-block"><i class="fas fa-check"></i> Finalizar Pedido</button>
+                    <a href="index.php?modulo=Raffle&acao=pay" class="btn btn-success btn-lg btn-block"><i class="fas fa-check"></i> Finalizar Pedido</a>
                 </div>
             </div>
         </div>
     <?php endif; ?>
-        <div id="finish-cart" class="text-center <?= (!empty($data)) ? 'd-none' : ''; ?>">
+        <div id="finish-cart" class="text-center p-4 <?= (!empty($data)) ? 'd-none' : ''; ?>">
             <div class="cart-empty">
                 <h2>Carrinho vazio</h2>
                 <a class="btn btn-primary mt-5" href="index.php?modulo=Raffle&acao=home">Voltar para loja</a>
