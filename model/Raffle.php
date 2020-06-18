@@ -139,7 +139,7 @@ class Raffle
         $raffle = new Database();
         $this->raffle['raffleBought'] = $raffle->makeQuery("SELECT    
             u.id, u.name,
-            rb.quantityRaffles, rb.created, rb.boughtRaffles,
+            rb.quantityRaffles, rb.created, rb.boughtRaffles, rb.id as raffle_buy_id,
             r.productName, r.unitaryValue, r.picture, r.status, r.owner_id, r.id as raffleId
             FROM `raffles_buy` as rb
             INNER JOIN raffles as r on rb.prod_id = r.id
@@ -341,7 +341,8 @@ class Raffle
                 $sortKey = array_rand($sortRaffleNumbers);
                 $updateRaffleStatus = array(
                     'status' => 2,
-                    'owner_id' => $sortRaffleNumbers[$sortKey]['user_id']
+                    'owner_id' => $sortRaffleNumbers[$sortKey]['user_id'],
+                    'draw_raffle' => $sortKey
                 );
                 $db->update('raffles', $updateRaffleStatus, $id);
             }

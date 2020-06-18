@@ -1,12 +1,18 @@
 <head>
     <link rel="stylesheet" href="./css/cart.css">
 </head>
+
+<style>
+    p {
+        word-break: break-all;
+    }
+</style>
+
 <?php if ($_GET['modulo'] != 'Dashboard'): ?>
     <?php require './templates/layouts/header.php'; ?>
 <?php endif; ?>
 <body>
     <div class="container p-5">
-
         <form>
             <div class="row searchbox">
                 <div class="form-group col-6">
@@ -43,7 +49,10 @@
                         <p><?= $value['unitaryValue'] *  $value['quantityRaffles']; ?> R$</p>
                         <p class="mt-4">
                             <strong>
-                                <?= $value['boughtRaffles']; ?>
+                                <button onclick="showRafflesNumbers(<?= $value['raffle_buy_id'] ?>)" id="bought-raffles" class="btn btn-primary">Ver rifas compradas</button>
+                                <div id="raffles-to-show-<?= $value['raffle_buy_id'] ?>" class="d-none">
+                                    <?= $value['boughtRaffles']; ?>
+                                </div>
                             </strong>
                         </p>
                         <br>
@@ -77,8 +86,34 @@
     </div>
 </body>
 
+<div id="modal-msg" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Atenção</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Rifas compradas = <span id="insert-text"></span></p>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <?php if (isset($_GET['pay']) && $_GET['pay'] == '1'): ?>
     <script>
         localStorage.clear();
     </script>
 <?php endif; ?>
+
+<script>
+    function showRafflesNumbers(raffleId) {
+        let rafflesToShow = $(`#raffles-to-show-${raffleId}`).text();
+        $("#insert-text").html(rafflesToShow);
+        $('#modal-msg').modal('show');
+    }
+</script>

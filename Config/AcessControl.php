@@ -43,7 +43,25 @@ class AcessControl {
 
         ),
         4 => array(
-
+            'routes' => array(
+                'User' => array(
+                    'add',
+                    'login',
+                    'profile',
+                    'logout'
+                ),
+                'Raffle' => array(
+                    'about',
+                    'contact',
+                    'home',
+                    'partnership',
+                    'store',
+                    'pay',
+                    'order',
+                    'cart',
+                    'viewProduct'
+                )
+            )
         ),
         5 => array(
 
