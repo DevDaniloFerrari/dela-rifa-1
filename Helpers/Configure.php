@@ -49,7 +49,10 @@ class Configure {
                 3 => 'visitante',
                 4 => 'cliente'
             ),
-
+            'productStatus' => array(
+                1 => 'Aguardando sorteio',
+                2 => 'Produto sorteado'
+            )
         );
         return $data[$index];
     }

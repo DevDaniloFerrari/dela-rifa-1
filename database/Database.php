@@ -5,7 +5,7 @@ class Database {
     private $host = 'localhost';
     private $user = 'root';
     private $password = '';
-    private $database = 'dellarifa';
+    private $database = 'dela-rifa';
     private $conection;
 
     public function __construct()
@@ -19,7 +19,7 @@ class Database {
         return (!$conection) ?  mysqli_connect_error() : $conection;
     }
 
-    public function save(array $data, $table)
+    public function save(array $data, $table, $lastInsert = false)
     {
         $columnsToInsert = '';
         $insetData = '';
@@ -32,6 +32,9 @@ class Database {
         }
         $stmt = $this->conection->prepare("INSERT INTO $table ($columnsToInsert) VALUES ($insetData)");
         $stmt->execute();
+        if ($lastInsert) {
+            return $stmt->insert_id;
+        }
         return ($stmt->affected_rows === 1) ? true : false;
     }
 
@@ -71,7 +74,7 @@ class Database {
         $countLoop = 0;
         foreach ($data as $key => $value) {
             $countLoop ++;
-            $updateQuery .= ($arrayLength - $countLoop < 1) ?  "$key = '$value'" : "$key = '$value'" . ",";;
+            $updateQuery .= ($arrayLength - $countLoop < 1) ?  "$key = '$value'" : "$key = '$value'" . ",";
         }
         $query = "UPDATE $table SET $updateQuery WHERE id = $id";
         $stmt = $this->conection->prepare($query);

@@ -135,6 +135,23 @@ class Raffle
 
     public function order()
     {
+        $userId = $_SESSION['Auth']['id'];
+        $raffle = new Database();
+        $this->raffle['raffleBought'] = $raffle->makeQuery("SELECT    
+            u.id, u.name,
+            rb.quantityRaffles, rb.created, rb.boughtRaffles,
+            r.productName, r.unitaryValue, r.picture, r.status, r.owner_id, r.id as raffleId
+            FROM `raffles_buy` as rb
+            INNER JOIN raffles as r on rb.prod_id = r.id
+            INNER JOIN users as u on rb.user_id = u.id
+            WHERE rb.`user_id` = '" . $userId . "'"
+        );
+        foreach ($this->raffle['raffleBought'] as $key => $value) {
+            $raffleNumbers = new Database();
+            $productId = $value['raffleId'];
+            $this->raffle['raffleBought'][$key]['raffleNumbers'] = $raffleNumbers->makeQuery("SELECT raffles_draw.id, raffles_draw.raffle_number FROM raffles_draw INNER join raffles_buy as rb on rb.id = raffles_draw.raffle_buy_id WHERE raffles_draw.product_id = '" . $productId . "' and raffles_draw.user_id = '" . $userId . "'");
+        }
+        return $this->raffle;
     }
 
     public function addRaffle()
@@ -222,6 +239,8 @@ class Raffle
 
     public function viewProduct()
     {
+        $this->raffle['buyedRaffles'] = array();
+        $this->raffle['buyedRaffles']['countBuyed'] = 0;
         $id = $_GET['productId'];
         $raffle = new Database();
         $this->raffle = $raffle->select('raffles', 'id', $id);
@@ -255,32 +274,37 @@ class Raffle
             }
        
             if (isset($_SESSION['Cart']) && !empty($_SESSION['Cart'])) {
+                $boughtRaffles = '';
                 foreach ($_POST['raffles'] as $k => $value) {
+                    $implodeValues = implode(',', $value);
+                    $boughtRaffles .= $implodeValues;
                     $saveBuyProducts = array(
                         'user_id' => $_SESSION['Auth']['id'],
                         'price' => $_POST['totalPrice'],
                         'quantityRaffles' => count($value),
                         'prod_id' => $k,
                         'status' => '1',
+                        'boughtRaffles' => $boughtRaffles,
                         'created' => date('Y-m-d H:i:s')
                     );
                     $buyRaffle = new Database();
-                    $buyRaffle->save($saveBuyProducts, 'raffles_buy');
+                    $lastId = $buyRaffle->save($saveBuyProducts, 'raffles_buy', true);
                     foreach ($value as $key => $data) {
                         $save = array(
                             'product_id' => $k,
                             'raffle_number'=> $data,
                             'user_id' => $_SESSION['Auth']['id'],
+                            'raffle_buy_id' => $lastId,
                             'created' => date('Y-m-d H:i:s')
                         );
                         $raffle = new Database();
                         if ($raffle->save($save, 'raffles_draw')) {
                             unset($_SESSION['Cart'][$k]);
-                            return Flash::flashWithRedirect('Erro ao deletar rifa', 'success', 'modulo=Raffle&acao=order');
                         }
                     }
                 }
             }
+            return Flash::flashWithRedirect('Sucesso ao comprar rifa', 'success', 'modulo=Raffle&acao=order&pay=1');
         }
         return $this->returnCartItems();
     }
@@ -300,5 +324,5 @@ class Raffle
         }
         return $this->raffle;
     }
-    
+
 }

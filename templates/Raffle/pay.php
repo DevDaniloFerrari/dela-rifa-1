@@ -1,7 +1,9 @@
 <head>
   <link rel="stylesheet" href="./css/raffles.css">
 </head>
-
+<?php if ($_GET['modulo'] != 'Dashboard'): ?>
+    <?php require './templates/layouts/header.php'; ?>
+<?php endif; ?>
 <body>
 <?php $totalPrice = 0; ?>
   <div class="container">

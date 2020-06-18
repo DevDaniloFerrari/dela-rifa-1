@@ -31,7 +31,9 @@
         background-color: #BD5D38;
     }
 </style>
-
+<?php if ($_GET['modulo'] != 'Dashboard'): ?>
+    <?php require './templates/layouts/header.php'; ?>
+<?php endif; ?>
 <body>
     <div id="header"></div>
     <div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
