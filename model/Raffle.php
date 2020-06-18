@@ -144,7 +144,7 @@ class Raffle
             FROM `raffles_buy` as rb
             INNER JOIN raffles as r on rb.prod_id = r.id
             INNER JOIN users as u on rb.user_id = u.id
-            WHERE rb.`user_id` = '" . $userId . "' ORDER BY rb.id"
+            WHERE rb.`user_id` = '" . $userId . "' ORDER BY rb.id DESC"
         );
         foreach ($this->raffle['raffleBought'] as $key => $value) {
             $raffleNumbers = new Database();

@@ -67,9 +67,11 @@
                 <li class="nav-item">
                     <a id="cartBtn" class="nav-link cursor-pointer" href="index.php?modulo=Raffle&acao=cart"><i class="fas fa-shopping-cart"></i> Carrinho</a>
                 </li>
-                <li class="nav-item">
-                    <a id="loginBtn" class="nav-link cursor-pointer" href="index.php?modulo=Dashboard&acao=index"><i class="fas fa-chart-line"></i> Dashboard</a>
-                </li>
+                <?php if ($_SESSION['Auth']['category_id'] == 1): ?>
+                    <li class="nav-item">
+                        <a id="loginBtn" class="nav-link cursor-pointer" href="index.php?modulo=Dashboard&acao=index"><i class="fas fa-chart-line"></i> Dashboard</a>
+                    </li>
+                <?php endif; ?>
                 <li class="nav-item">
                     <a id="loginBtn" class="nav-link cursor-pointer" href="index.php?modulo=User&acao=profile"><i class="fas fa-user-circle"></i> Perfil</a>
                 </li>
