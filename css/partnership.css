@@ -1,14 +1,32 @@
 .card {
-    width: 10rem;
+    display: flex;
+    align-content: center;
+    width: 12rem;
+    height: 24rem;
     margin-top: 20px;
 }
 
 #tittle{
     text-align: center;
+    font-weight: 400;
     color: rgb(212, 108, 23);
+}
+.card-title{
+    font-weight: 600;
+}
+.card-text{
+    font-weight: 300;
 }
 
 
 a{
     color: rgb(248, 155, 68);
+}
+.card-img-top{
+    display: flex;
+    width: 12rem;
+    height: 10rem;
+    margin: 0 auto;
+    align-items: center;
+    align-content: center;
 }
