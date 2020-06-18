@@ -37,10 +37,10 @@
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-users"></i> Usuários</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="index.php?modulo=dashboard&acao=index&dashboardRoute=userList"><i class="fas fa-list"></i> Listar</a>
+                            <a href="index.php?modulo=Dashboard&acao=index&dashboardRoute=userList"><i class="fas fa-list"></i> Listar</a>
                         </li>
                         <li>
-                            <a href="index.php?modulo=dashboard&acao=index&dashboardRoute=userAdd"><i class="fas fa-plus"></i> Adicionar</a>
+                            <a href="index.php?modulo=Dashboard&acao=index&dashboardRoute=userAdd"><i class="fas fa-plus"></i> Adicionar</a>
                         </li>
                     </ul>
                 </li>
@@ -48,10 +48,10 @@
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-box-open"></i> Rifas</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="index.php?modulo=dashboard&acao=index&dashboardRoute=raffleList"><i class="fas fa-list"></i> Listar</a>
+                            <a href="index.php?modulo=Dashboard&acao=index&dashboardRoute=raffleList"><i class="fas fa-list"></i> Listar</a>
                         </li>
                         <li>
-                            <a href="index.php?modulo=dashboard&acao=index&dashboardRoute=raffleAdd"><i class="fas fa-plus"></i> Adicionar</a>
+                            <a href="index.php?modulo=Dashboard&acao=index&dashboardRoute=raffleAdd"><i class="fas fa-plus"></i> Adicionar</a>
                         </li>
                     </ul>
                 </li>
