@@ -225,6 +225,13 @@ class Raffle
         $id = $_GET['productId'];
         $raffle = new Database();
         $this->raffle = $raffle->select('raffles', 'id', $id);
+        $arrayToFormat = $raffle->makeQuery("SELECT * FROM raffles_draw WHERE `product_id` = '" . $id . "' ");
+        if (!empty($arrayToFormat)) {
+            foreach ($arrayToFormat as $value) {
+                $this->raffle['buyedRaffles'][$value['raffle_number']] = $value['product_id'];
+                $this->raffle['buyedRaffles']['countBuyed'] = count($arrayToFormat);
+            }
+        }
         return $this->raffle;
     }
 
@@ -249,6 +256,16 @@ class Raffle
        
             if (isset($_SESSION['Cart']) && !empty($_SESSION['Cart'])) {
                 foreach ($_POST['raffles'] as $k => $value) {
+                    $saveBuyProducts = array(
+                        'user_id' => $_SESSION['Auth']['id'],
+                        'price' => $_POST['totalPrice'],
+                        'quantityRaffles' => count($value),
+                        'prod_id' => $k,
+                        'status' => '1',
+                        'created' => date('Y-m-d H:i:s')
+                    );
+                    $buyRaffle = new Database();
+                    $buyRaffle->save($saveBuyProducts, 'raffles_buy');
                     foreach ($value as $key => $data) {
                         $save = array(
                             'product_id' => $k,
@@ -257,14 +274,14 @@ class Raffle
                             'created' => date('Y-m-d H:i:s')
                         );
                         $raffle = new Database();
-                        if ($raffle->save($save, 'buy_raffles')) {
+                        if ($raffle->save($save, 'raffles_draw')) {
                             unset($_SESSION['Cart'][$k]);
+                            return Flash::flashWithRedirect('Erro ao deletar rifa', 'success', 'modulo=Raffle&acao=order');
                         }
                     }
                 }
             }
         }
-        pr($_SESSION['Cart']);
         return $this->returnCartItems();
     }
 

@@ -74,6 +74,8 @@
       </div>
 	</div>
 	
+  <input type="hidden" name="totalPrice" value="<?= $totalPrice; ?>">
+
 	<?php foreach ($data as $value): ?>
 		<?php foreach ($value['rafflesToBuy'] as $v): ?>
 			<input type="hidden" name="raffles[<?= $value['id'] ?>][]" value="<?= $v; ?>">

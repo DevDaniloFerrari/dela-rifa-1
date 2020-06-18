@@ -1,6 +1,5 @@
 <div class="col-12 p-2 mt-5">
     <div class='row m-0'>
-
         <div class="col-6">
             <div id="modal">
                 <div class="product-img mt-2 d-flex justify-content-center card">
@@ -23,7 +22,7 @@
                     <b>Participantes :</b> <?= $data['participantsQuantity']; ?>
                 </div>
                 <div class="col-6 d-flex justify-content-center">
-                    <b>Restante :</b> <?= $data['participantsQuantity']; ?>
+                    <b>Restante :</b> <?= $data['participantsQuantity'] - $data['buyedRaffles']['countBuyed']; ?>
                 </div>
             </div>
             <div class="col-12 d-flex justify-content-center p-2">
@@ -33,9 +32,11 @@
             <div class="border p-3">
                 <div class="row m-0">
                     <?php for ($i = 1; $i <= $data['participantsQuantity']; $i++) : ?>
-                        <div id="raffle-n-<?= $i; ?>" onclick="checkRaffle(<?= $i; ?>, <?= $data['id']; ?>)" class="border p-2 ml-1 mt-2 d-flex justify-content-center raffle-number">
-                            <?= $i; ?>
-                        </div>
+                        <?php if (!array_key_exists($i, $data['buyedRaffles'])): ?>
+                            <div id="raffle-n-<?= $i; ?>" onclick="checkRaffle(<?= $i; ?>, <?= $data['id']; ?>)" class="border p-2 ml-1 mt-2 d-flex justify-content-center raffle-number">
+                                <?= $i; ?>
+                            </div>
+                        <?php endif; ?>
                     <?php endfor; ?>
                 </div>
             </div>
