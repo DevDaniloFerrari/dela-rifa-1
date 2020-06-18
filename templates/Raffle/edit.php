@@ -1,3 +1,6 @@
+<?php if ($_GET['modulo'] != 'Dashboard'): ?>
+    <?php require './templates/layouts/header.php'; ?>
+<?php endif; ?>
 <div class="d-flex justify-content-center mt-5 text-success">
     <h3>Editar rifa</h3>
 </div>

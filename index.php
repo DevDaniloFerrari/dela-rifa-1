@@ -6,11 +6,7 @@
     if (!isset($_GET['modulo'])) {
         header("Location: index.php?modulo=User&acao=login");
     }
-    
-    if ($_GET['modulo'] == 'Raffle') {
-        require './templates/layouts/header.php';
-    }
-
+ 
     require 'database/Database.php';
     require 'Config/AcessControl.php';
     require 'Config/Flash.php';
@@ -24,7 +20,7 @@
     require 'Helpers/Configure.php';
     require 'Config/DelaHash.php';
     $controller = new Controller;
-
+   
     function pr($data) {
         echo '<pre>';
         print_r($data);

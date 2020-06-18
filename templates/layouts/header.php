@@ -20,7 +20,7 @@
 </head>
 
 <h1 class="d-flex justify-content-center titulo p-0 m-0">Dela Rifa</h1>
-
+<body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +53,6 @@
             </li>
         </ul>
         <ul class="navbar-nav navbar-right">
-
         <?php if (!isset($_SESSION['Auth'])): ?>
             <li class="nav-item">
                 <a class="nav-link cursor-pointer" href="index.php?modulo=User&acao=add">Registrar <i class="fas fa-user-plus"></i></a> 
@@ -80,4 +79,5 @@
             <?php endif; ?>
         </ul>
     </div>
-</nav>
+</nav> 
+</body>

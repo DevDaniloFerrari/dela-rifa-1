@@ -1,3 +1,6 @@
+<?php if ($_GET['modulo'] != 'Dashboard'): ?>
+    <?php require './templates/layouts/header.php'; ?>
+<?php endif; ?>
 <div class="container">
     <div class="row">
         <div class="col">

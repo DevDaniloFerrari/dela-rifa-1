@@ -1,6 +1,9 @@
 <head>
     <link rel="stylesheet" href="./css/partnership.css">
 </head>
+<?php if ($_GET['modulo'] != 'Dashboard'): ?>
+    <?php require './templates/layouts/header.php'; ?>
+<?php endif; ?>
 <body>
     <div id="header"></div>
     <div class="container">
