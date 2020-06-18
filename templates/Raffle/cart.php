@@ -11,21 +11,21 @@
             <?php foreach ($data as $value): ?>
                 <?php $totalPrice += count($value['rafflesToBuy']) *  $value['unitaryValue']; ?>
                 <div id="raffle-card-<?= $value['id']; ?>" class="row border">
-                    <div class="col-3">
+                    <div class="col-md-3">
                         <h3 class="text-center"><?= $value['productName']; ?></h3>
                         <img class="card-img-top" src="<?= $value['picture']; ?>">
                     </div>
-                    <div class="col-2 align-self-center text-center">
+                    <div class="col-md-2 align-self-center text-center">
                         <p><strong>Quantidade: </strong></p>
                         <p><strong>Valor unitário: </strong></p>
                         <p><strong>Valor total: </strong></p>
                     </div>
-                    <div class="col-2 align-self-center text-center">
+                    <div class="col-md-2 align-self-center text-center">
                         <p><?= count($value['rafflesToBuy']); ?></p>
                         <p><?= $value['unitaryValue']; ?> R$</p>
                         <p><?= count($value['rafflesToBuy']) *  $value['unitaryValue']; ?> R$</p>
                     </div>
-                    <div class="col-5 align-self-center text-right">
+                    <div class="col-md-5 align-self-center text-right">
                         <button onclick="deleteRaffle(<?= $value['id']; ?>);" class="btn btn-danger"><i class="fas fa-minus-circle"></i> Remover</button>
                     </div>
                 </div>
