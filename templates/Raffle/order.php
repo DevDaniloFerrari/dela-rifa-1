@@ -41,12 +41,13 @@
                         <p><?= $value['quantityRaffles']; ?></p>
                         <p><?= $value['unitaryValue'] ?> R$</p>
                         <p><?= $value['unitaryValue'] *  $value['quantityRaffles']; ?> R$</p>
-                        <p>
+                        <p class="mt-4">
                             <strong>
                                 <?= $value['boughtRaffles']; ?>
                             </strong>
                         </p>
-                        <p><?= date_format(date_create($data['raffleBought'][$key]['created']), 'd-m-Y'); ?></p>
+                        <br>
+                        <p class=""><?= date_format(date_create($data['raffleBought'][$key]['created']), 'd-m-Y'); ?></p>
                     </div>
                     <?php if ($value['status'] == 1): ?>
                         <div class="col-5 align-self-center text-right">

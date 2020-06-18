@@ -132,6 +132,26 @@
         let checkRaffles = localStorage.getItem(`raffle-${productGetId}`);
         if (checkRaffles != null) {
             $('#btn-part').attr('href', 'index.php?modulo=Raffle&acao=pay');
+                let dataPost = [{
+                productId: productGetId,
+                raffles: localStorage.getItem(`raffle-${productGetId}`)
+            }];
+            dataPost = JSON.stringify(dataPost);
+
+            $.ajax({
+                type: 'POST',
+                url: 'cart.php',
+                data: `dataCart=${dataPost}`,
+                dataType: 'json',
+                success: dados => {
+                    if (dados.code === 200) {
+                        window.location = "?modulo=Raffle&acao=pay";
+                    }
+                },
+                error: erro => {
+                    console.log(erro)
+                }
+            });
         } else {
             alert('Você precisa selecionar ao menos uma rifa para prosseguir !');
             $('#btn-part').attr('href', '#');
@@ -139,25 +159,31 @@
     });
 
     $("#btn-cart").on('click', function() {
-        let dataPost = [{
-            productId: productGetId,
-            raffles: localStorage.getItem(`raffle-${productGetId}`)
-        }, ];
-        dataPost = JSON.stringify(dataPost);
-        editId = $(this).val();
-        $.ajax({
-            type: 'POST',
-            url: 'cart.php',
-            data: `dataCart=${dataPost}`,
-            dataType: 'json',
-            success: dados => {
-                if (dados.code === 200) {
-                    window.location = "?modulo=Raffle&acao=cart";
+        let checkRaffles = localStorage.getItem(`raffle-${productGetId}`);
+        if (checkRaffles != null) {
+            let dataPost = [{
+                productId: productGetId,
+                raffles: localStorage.getItem(`raffle-${productGetId}`)
+            }];
+            dataPost = JSON.stringify(dataPost);
+            editId = $(this).val();
+            $.ajax({
+                type: 'POST',
+                url: 'cart.php',
+                data: `dataCart=${dataPost}`,
+                dataType: 'json',
+                success: dados => {
+                    if (dados.code === 200) {
+                        window.location = "?modulo=Raffle&acao=cart";
+                    }
+                },
+                error: erro => {
+                    console.log(erro)
                 }
-            },
-            error: erro => {
-                console.log(erro)
-            }
-        });
+            });
+        } else {
+            alert('Você precisa selecionar ao menos uma rifa para prosseguir !');
+            $('#btn-part').attr('href', '#');
+        }
     });
 </script>

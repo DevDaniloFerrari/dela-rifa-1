@@ -24,25 +24,34 @@
             </div>
         </form>
     </div>
-    <div class="container p-5">
-        <div class="row">
-            <?php foreach ($data as $raffle) : ?>
-                <div class="col" style="padding-top: 5px;">
-                    <div class="card card-raffle">
-                        <img class="card-img-top" src="<?= $raffle['picture']; ?>" alt="Card image cap">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title"><?= $raffle['productName']; ?></h5>
-                            <p class="card-text"><?= $raffle['description'] ?></p>
-                            <p><i class="fas fa-users"></i> Participantes : <?= $raffle['participantsQuantity'] ?></p>
-                            <p><i class="fas fa-money-check-alt"></i> Valor: R$ <?= $raffle['unitaryValue'] ?></p>
-                            <a href="index.php?modulo=Raffle&acao=viewProduct&productId=<?= $raffle['id'] ?>" class="mt-auto btn btn-lg btn-block btn-primary"> Participar</a>
+    <?php if (isset($data) && !empty($data)): ?>
+        <div class="container p-5">
+            <div class="row">
+                <?php foreach ($data as $raffle) : ?>
+                    <div class="col" style="padding-top: 5px;">
+                        <div class="card card-raffle">
+                            <img class="card-img-top" src="<?= $raffle['picture']; ?>" alt="Card image cap">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title"><?= $raffle['productName']; ?></h5>
+                                <p class="card-text"><?= $raffle['description'] ?></p>
+                                <p><i class="fas fa-users"></i> Participantes : <?= $raffle['participantsQuantity'] ?></p>
+                                <p><i class="fas fa-money-check-alt"></i> Valor: R$ <?= $raffle['unitaryValue'] ?></p>
+                                <a href="index.php?modulo=Raffle&acao=viewProduct&productId=<?= $raffle['id'] ?>" class="mt-auto btn btn-lg btn-block btn-primary"> Participar</a>
+                            </div>
                         </div>
+                        <br>
                     </div>
-                    <br>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            </div>
         </div>
-    </div>
+    <?php else: ?>
+        <div id="finish-cart" class="text-center p-4 <?= (!empty($data)) ? 'd-none' : ''; ?>">
+            <div class="cart-empty">
+                <h2>Nenhuma rifa dispónivel no momento</h2>
+                <a class="btn btn-primary mt-5" href="index.php?modulo=Raffle&acao=home">Voltar para loja</a>
+            </div>
+        </div>
+    <?php endif; ?>
     <div id="footer">
         <?php require './templates/layouts/footer.php'; ?>
     </div>

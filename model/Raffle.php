@@ -106,11 +106,11 @@ class Raffle
     public function store()
     {
         $raffles = new Database();
-        $this->raffle = $raffles->selectAll('raffles');
+        $this->raffle = $raffles->makeQuery('SELECT * FROM raffles where raffles.status = 1');
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
             if (isset($_POST['product-name'])) {
                 $productName = $_POST['product-name'];
-                $query = "SELECT * FROM `raffles` WHERE `productName` LIKE '%$productName%'";
+                $query = "SELECT * FROM `raffles` WHERE raffles.status = 1 AND `productName` LIKE '%$productName%'";
                 $this->raffle = $raffles->makeQuery($query);
             }
         }
@@ -144,7 +144,7 @@ class Raffle
             FROM `raffles_buy` as rb
             INNER JOIN raffles as r on rb.prod_id = r.id
             INNER JOIN users as u on rb.user_id = u.id
-            WHERE rb.`user_id` = '" . $userId . "'"
+            WHERE rb.`user_id` = '" . $userId . "' ORDER BY rb.id"
         );
         foreach ($this->raffle['raffleBought'] as $key => $value) {
             $raffleNumbers = new Database();
@@ -264,6 +264,7 @@ class Raffle
         $rafflePay = array();
         $validate = array();
         $save = array();
+        $productsIds = array();
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
             foreach ($_POST as $key => $postData) {
                 if (isset($_POST[$key]) && !empty($_POST[$key])) {
@@ -287,6 +288,7 @@ class Raffle
                         'boughtRaffles' => $boughtRaffles,
                         'created' => date('Y-m-d H:i:s')
                     );
+                    $productsIds[] = $k;
                     $buyRaffle = new Database();
                     $lastId = $buyRaffle->save($saveBuyProducts, 'raffles_buy', true);
                     foreach ($value as $key => $data) {
@@ -303,6 +305,8 @@ class Raffle
                         }
                     }
                 }
+
+                $this->checkQuantityRiffles($productsIds);
             }
             return Flash::flashWithRedirect('Sucesso ao comprar rifa', 'success', 'modulo=Raffle&acao=order&pay=1');
         }
@@ -323,6 +327,26 @@ class Raffle
             }
         }
         return $this->raffle;
+    }
+
+    public function checkQuantityRiffles(array $ids)
+    {
+        foreach ($ids as $id) {
+            $db = new Database();
+            $countRaffles = $db->makeQuery("SELECT count(product_id) AS total FROM `raffles_draw` WHERE raffles_draw.product_id = '" . $id . "' ");
+            $raffle = $db->select("raffles", 'id', $id);
+            
+            if ($countRaffles[0]['total'] >= $raffle['participantsQuantity']) {
+                $sortRaffleNumbers = $db->makeQuery("SELECT * FROM raffles_draw where product_id = '" . $id . "'");
+                $sortKey = array_rand($sortRaffleNumbers);
+                $updateRaffleStatus = array(
+                    'status' => 2,
+                    'owner_id' => $sortRaffleNumbers[$sortKey]['user_id']
+                );
+                $db->update('raffles', $updateRaffleStatus, $id);
+            }
+        }
+        return true;
     }
 
 }
