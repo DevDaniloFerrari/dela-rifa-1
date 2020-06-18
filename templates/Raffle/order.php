@@ -8,7 +8,7 @@
     <div class="container p-5">
 
         <form>
-            <div class="row">
+            <div class="row searchbox">
                 <div class="form-group col-6">
                     <label for=""></label>
                     <input type="text" class="form-control" placeholder="Filtrar por nome do produto">

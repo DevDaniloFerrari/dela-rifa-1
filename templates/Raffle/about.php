@@ -18,6 +18,8 @@
         color: #fff !important;
         border-radius: 100%;
         text-align: center;
+        margin: 0 auto;
+        padding: 15px;
         font-size: 1.5rem;
         line-height: 3.5rem;
         margin-right: 1rem;
@@ -179,7 +181,7 @@
             name: "Danilo Ferrari",
             age: 19,
             course: "Sitema da informação",
-            profession: "desenvolvedor Fullstack",
+            profession: "Desenvolvedor Fullstack",
             gitHub: 'https://www.github.com/DevDaniloFerrari',
             linkedin: 'https://www.linkedin.com/in/danilo-ferrari-5830a4161',
             tecnologies: ['C#', 'NET Core', 'Angular', 'Azure', 'AWS', 'SqlServer']
@@ -187,12 +189,12 @@
 
         const cvKimData = {
             name: "Kim Kokubun",
-            age: '',
+            age: '26',
             course: "Sistema da informação",
-            profession: "desenvolvedor FullStack ",
+            profession: "Desenvolvedor FullStack ",
             gitHub: 'https://github.com/kimkokubun',
             linkedin: 'https://www.linkedin.com/in/kim-silveira-882296161/',
-            tecnologies: ['Java', 'Angular', 'PostgreSQl', 'NodeJs']
+            tecnologies: ['Java', 'Angular', 'PostgreSQL', 'NodeJs', 'ReactJS', 'AWS', 'Oracle']
         };
 
         cvManoel.on('click', function () {
@@ -227,7 +229,7 @@
                     );
                 });
 
-                modalHeader.text(`Cv - ${cvManoelData.name}`);
+                modalHeader.text(`CV - ${cvManoelData.name}`);
                 cvProfession.text(cvManoelData.profession);
 
                 socialLinks.append(
@@ -245,7 +247,7 @@
                     );
                 });
 
-                modalHeader.text(`Cv - ${cvDaniloData.name}`);
+                modalHeader.text(`CV - ${cvDaniloData.name}`);
                 cvProfession.text(cvDaniloData.profession);
 
                 socialLinks.append(
@@ -262,7 +264,7 @@
                     );
                 });
 
-                modalHeader.text(`Cv - ${cvLucasData.name}`);
+                modalHeader.text(`CV - ${cvLucasData.name}`);
                 cvProfession.text(cvLucasData.profession);
 
                 socialLinks.append(
@@ -279,7 +281,7 @@
                     );
                 });
 
-                modalHeader.text(`Cv - ${cvKimData.name}`);
+                modalHeader.text(`CV - ${cvKimData.name}`);
                 cvProfession.text(cvKimData.profession);
 
                 socialLinks.append(
