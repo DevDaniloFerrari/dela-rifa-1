@@ -2,10 +2,7 @@
 namespace database;
 
 class Database {
-    private $host = 'localhost';
-    private $user = 'root';
-    private $password = '';
-    private $database = 'dela-rifa';
+
     private $conection;
 
     public function __construct()
@@ -15,7 +12,8 @@ class Database {
 
     public function connect()
     {
-        $conection = mysqli_connect($this->host, $this->user, $this->password, $this->database);
+        extract(parse_ini_file("config.ini"));
+        $conection = mysqli_connect($dbHost, $dbUser, $dbPassword, $dbName);
         return (!$conection) ?  mysqli_connect_error() : $conection;
     }
 
