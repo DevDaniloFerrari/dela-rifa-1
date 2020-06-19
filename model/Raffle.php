@@ -184,6 +184,9 @@ class Raffle
                 }
             }
        
+            if (count($validate) >= 1) {
+                return $validate;
+            }
             if (isset($_SESSION['Cart']) && !empty($_SESSION['Cart'])) {
                 $boughtRaffles = '';
                 foreach ($_POST['raffles'] as $k => $value) {

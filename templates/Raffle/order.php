@@ -43,7 +43,9 @@
                             </strong>
                         </p>
                         <p class=""><?= date_format(date_create($data['raffleBought'][$key]['created']), 'd-m-Y'); ?></p>
-                        <p><?= $value['draw_raffle']; ?></p>
+                        <?php if ($value['draw_raffle'] != 0): ?>
+                            <p><?= $value['draw_raffle']; ?></p>
+                        <?php endif; ?>
                     </div>
                     <?php if ($value['status'] == 1): ?>
                         <div class="col-5 align-self-center text-right">
