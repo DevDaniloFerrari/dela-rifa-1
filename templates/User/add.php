@@ -1,5 +1,5 @@
 <body>
-    <a href="index.php?modulo=User&acao=login" class="button btn btn-secondary">Voltar</a>
+    
     <?php require './templates/layouts/header.php'; ?>
 
     <div class="container d-flex justify-content-center">
