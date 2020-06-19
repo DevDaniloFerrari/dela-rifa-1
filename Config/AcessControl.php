@@ -54,6 +54,10 @@ class AcessControl {
 
     public function checkAccess($category = 0, $route, $isAuth = false)
     {
+        if (!isset($_GET['modulo'])) {
+            return header("Location: index.php?modulo=User&acao=login");
+        }
+
         if (!$isAuth && in_array($route['action'], $this->noAuthRoutes['routes'][$route['model']])) {
             return true;
         } 
