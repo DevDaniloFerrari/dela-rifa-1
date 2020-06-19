@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18-Jun-2020 às 01:14
+-- Tempo de geração: 19-Jun-2020 às 13:49
 -- Versão do servidor: 10.4.6-MariaDB
 -- versão do PHP: 7.2.22
 
@@ -36,18 +36,12 @@ CREATE TABLE `raffles` (
   `unitaryValue` float NOT NULL,
   `picture` varchar(255) NOT NULL,
   `created_by` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `owner_id` int(11) NOT NULL,
+  `draw_raffle` int(11) NOT NULL DEFAULT 0,
   `updated` datetime NOT NULL,
   `created` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `raffles`
---
-
-INSERT INTO `raffles` (`id`, `productName`, `description`, `participantsQuantity`, `unitaryValue`, `picture`, `created_by`, `updated`, `created`) VALUES
-(8, 'Caceta e planeta', 'cacetada', 12, 7, './assets/productsImg/95432294672be6484fde79852aa5cab5.png', 21, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(11, 'Carro', 'carro da gol', 40, 8, './assets/productsImg/3be167b0d5db62cb44c87e83b6b8f1d5.png', 21, '2020-06-14 16:06:39', '2020-06-14 16:06:39'),
-(12, 'Teste', 'goleta brabo', 26, 9, './assets/productsImg/8c9b7e249f4efd321921078a391ce5c9.png', 21, '2020-06-17 00:37:10', '2020-06-17 00:37:10');
 
 -- --------------------------------------------------------
 
@@ -62,6 +56,7 @@ CREATE TABLE `raffles_buy` (
   `quantityRaffles` int(11) NOT NULL,
   `prod_id` int(11) NOT NULL,
   `status` int(11) NOT NULL,
+  `boughtRaffles` varchar(255) NOT NULL,
   `created` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -76,22 +71,9 @@ CREATE TABLE `raffles_draw` (
   `product_id` int(11) NOT NULL,
   `raffle_number` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `raffle_buy_id` int(11) NOT NULL,
   `created` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `raffles_draw`
---
-
-INSERT INTO `raffles_draw` (`id`, `product_id`, `raffle_number`, `user_id`, `created`) VALUES
-(1, 8, 5, 21, '2020-06-17 01:43:42'),
-(2, 8, 10, 21, '2020-06-17 01:43:42'),
-(3, 8, 11, 21, '2020-06-17 01:43:42'),
-(4, 8, 12, 21, '2020-06-17 01:43:42'),
-(5, 8, 5, 21, '2020-06-17 01:45:34'),
-(6, 8, 10, 21, '2020-06-17 01:45:34'),
-(7, 8, 11, 21, '2020-06-17 01:45:34'),
-(8, 8, 12, 21, '2020-06-17 01:45:34');
 
 -- --------------------------------------------------------
 
@@ -124,8 +106,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `postalCode`, `number`, `email`, `maritalStatus`, `gender`, `birthDate`, `homePhone`, `cellPhone`, `street`, `neighborhood`, `state`, `city`, `country`, `password`, `category_id`) VALUES
-(20, 'Manoel Merlin', '02832250', 143, 'manoel.neto@samplemed.com.br', 1, 1, '1999-11-24', '11958401353', '11958401353', 'Rua Francesco Granacci', 'Parque SÃ£o LuÃ­s', 'Sp', 'Sp', 'Brasil', '$2a$08$MTE1ODEyMTUzMTVlZGUzM.Nt/oal0Z01gK1a8XfrY.JGd2VGal3bm', 4),
-(21, 'Manoel Merlin', '02832250', 143, 'manoelmerlin@hotmail.com', 1, 1, '1999-11-24', '11958401353', '11958401353', 'Rua Francesco Granacci', 'Parque SÃ£o LuÃ­s', 'Sp', 'Sp', 'Brasil', '$2a$08$MTQ5OTA5MzY2NzVlZGUzMuBxhI9xM6aHx45X8QTDi5yDvmErz1GrC', 1);
+(1, 'Administrador', '02832250', 143, 'admin@admin.com', 1, 1, '9999-11-24', '1', '1', 'Rua Francesco Granacci', 'Parque SÃ£o LuÃ­s', 'SP', 'SÃ£o Paulo', 'Brasil', '$2a$08$MTI1ODQ4NjYzNjVlZWNhNeV0LAVUEhx/bOdldUtD84NGaNZnxx6vC', 4);
 
 --
 -- Índices para tabelas despejadas
@@ -164,7 +145,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `raffles`
 --
 ALTER TABLE `raffles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `raffles_buy`
@@ -176,13 +157,13 @@ ALTER TABLE `raffles_buy`
 -- AUTO_INCREMENT de tabela `raffles_draw`
 --
 ALTER TABLE `raffles_draw`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

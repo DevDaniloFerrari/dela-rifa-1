@@ -13,22 +13,6 @@
 <?php endif; ?>
 <body>
     <div class="container p-5">
-        <form>
-            <div class="row searchbox">
-                <div class="form-group col-6">
-                    <label for=""></label>
-                    <input type="text" class="form-control" placeholder="Filtrar por nome do produto">
-                </div>
-                <div class="form-group col-3">
-                    <label for=""></label>
-                    <input type="date" class="form-control">
-                </div>
-                <div class="form-group col-3">
-                    <label for=""></label>
-                    <input type="submit" class="btn btn-success" value="Buscar">
-                </div>
-            </div>
-        </form>
         <?php if (!empty($data['raffleBought'])): ?>
             <?php foreach ($data['raffleBought'] as $key => $value): ?>
                 <div class="row border">
