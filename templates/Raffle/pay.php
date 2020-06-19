@@ -58,21 +58,21 @@
     <div class="d-flex justify-content-center row">
       <div class="form-group col-md-6">
         <label for="name">Nome completo:</label>
-        <input name="name" type="text" class="form-control" id="name" />
+        <input name="name" type="text" required="true" class="form-control" id="name" />
       </div>
     </div>
     <div class="row justify-content-center">
       <div class="form-group col-md-3">
         <label for="name">Número do cartão</label>
-        <input name="name" type="text" class="form-control" id="name" />
+        <input name="name" type="text" required="true" class="form-control" id="name" />
       </div>
       <div class="form-group col-md-2">
         <label for="name">Validade</label>
-        <input name="name" type="date" class="form-control" id="name" />
+        <input name="name" type="date" required="true" class="form-control" id="name" />
       </div>
       <div class="form-group col-md-1">
         <label for="name">CVV</label>
-        <input name="name" type="text" class="form-control" id="name" />
+        <input name="name" required="true" type="text" class="form-control" id="name" />
       </div>
 	</div>
 	
