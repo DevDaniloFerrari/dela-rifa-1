@@ -62,7 +62,7 @@ class Database {
         $stmt = $this->conection->prepare($query);
         $stmt->execute();
         $stmt->close();
-        return ($stmt->affected_rows === 1) ? true : false;
+        return ($stmt->affected_rows == 1) ? true : false;
     }
 
     public function update($table, $data, $id)

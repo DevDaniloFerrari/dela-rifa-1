@@ -40,8 +40,11 @@
                         <p><strong>Quantidade:</strong></p>
                         <p><strong>Valor unitário:</strong></p>
                         <p><strong>Valor total:</strong></p>
-                        <p><strong>Números comprados</strong></p>
+                        <p><strong>Rifas compradas:</strong></p>
                         <p><strong>Data da Compra:</strong></p>
+                        <?php if ($value['draw_raffle'] != 0): ?>
+                            <p><strong>Número sorteado:</strong></p>
+                        <?php endif; ?>
                     </div>
                     <div class="col-2 align-self-center text-center">
                         <p><?= $value['quantityRaffles']; ?></p>
@@ -55,8 +58,8 @@
                                 </div>
                             </strong>
                         </p>
-                        <br>
                         <p class=""><?= date_format(date_create($data['raffleBought'][$key]['created']), 'd-m-Y'); ?></p>
+                        <p><?= $value['draw_raffle']; ?></p>
                     </div>
                     <?php if ($value['status'] == 1): ?>
                         <div class="col-5 align-self-center text-right">
@@ -90,12 +93,12 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Atenção</h5>
+          <h5 class="modal-title">Rifas</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" style="font-size: 30px;">
           <p>Rifas compradas = <span id="insert-text"></span></p>
         </div>
         <div class="modal-footer d-flex justify-content-center">

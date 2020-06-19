@@ -17,6 +17,8 @@ class Dashboard
                 require "./templates/Dashboard/bodyOfDashboard.php";
                 break;
             case 'userList':
+                $user = new User();
+                $data = $user->list();
                 require "./templates/User/list.php";
                 break;
             case 'raffleAdd':
@@ -31,6 +33,11 @@ class Dashboard
                 $raffle = new Raffle();
                 $data = $raffle->edit();
                 require './templates/Raffle/edit.php';
+                break;
+            case 'userEdit':
+                $user = new User();
+                $data = $user->edit();
+                require './templates/User/edit.php';
                 break;
         }
     }

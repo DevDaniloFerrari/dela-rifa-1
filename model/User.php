@@ -101,5 +101,21 @@ class User {
     {
         $users = new Database();
         $this->user = $users->selectAll('users');
+        return $this->user;
+    }
+
+    public function edit()
+    {
+        $id = $_GET['userId'];
+        $user = new Database();
+        $this->user = $user->select('users', 'id', $id);
+        $this->user['userId'] = $id;
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            if ($user->update('users', $_POST, $id)) {
+                return Flash::flashWithRedirect('Sucesso ao editar o usuário', 'success', 'modulo=Dashboard&acao=index&dashboardRoute=userList');
+            }
+            return Flash::flashWithRedirect('Erro ao editar ousuário', 'error', 'modulo=Dashboard&acao=index&dashboardRoute=userList');
+        }
+        return $this->user;   
     }
 }

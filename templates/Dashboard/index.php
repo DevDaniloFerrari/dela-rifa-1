@@ -24,6 +24,14 @@
 </head>
 
 <body>
+<?php if (isset($_SESSION['flashMessage'])): ?>
+        <h3 class="text-<?= ($_SESSION['flashMessage']['class']); ?> d-flex justify-content-center">
+            <?php 
+                echo $_SESSION['flashMessage']['text'];
+                unset($_SESSION['flashMessage']);
+            ?>
+        </h3>
+    <?php endif; ?>
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -38,9 +46,6 @@
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
                             <a href="index.php?modulo=Dashboard&acao=index&dashboardRoute=userList"><i class="fas fa-list"></i> Listar</a>
-                        </li>
-                        <li>
-                            <a href="index.php?modulo=Dashboard&acao=index&dashboardRoute=userAdd"><i class="fas fa-plus"></i> Adicionar</a>
                         </li>
                     </ul>
                 </li>

@@ -83,3 +83,11 @@
     </div>
 </nav> 
 </body>
+<?php if (isset($_SESSION['flashMessage'])): ?>
+        <h3 class="text-<?= ($_SESSION['flashMessage']['class']); ?> d-flex justify-content-center">
+            <?php 
+                echo $_SESSION['flashMessage']['text'];
+                unset($_SESSION['flashMessage']);
+            ?>
+        </h3>
+<?php endif; ?>

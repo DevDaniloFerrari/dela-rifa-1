@@ -45,8 +45,6 @@ class Configure {
             ),
             'categories' => array(
                 1 => 'administrador',
-                2 => 'tester',
-                3 => 'visitante',
                 4 => 'cliente'
             ),
             'productStatus' => array(

@@ -8,7 +8,8 @@ class AcessControl {
         'routes' => array(
             'User' => array(
                 'add',
-                'login'
+                'login',
+                'logout'
             ),
             'Raffle' => array(
                 'about',
@@ -22,26 +23,6 @@ class AcessControl {
 
     protected $routes = array(
         1 => '*',
-        2 => array(
-            'routes' => array(
-                'User' => array(
-                    'add',
-                    'login',
-                    'profile',
-                    'logout'
-                ),
-                'Raffle' => array(
-                    'about',
-                    'contact',
-                    'home',
-                    'partnership',
-                    'store'
-                )
-            )
-        ),
-        3 => array(
-
-        ),
         4 => array(
             'routes' => array(
                 'User' => array(
@@ -62,9 +43,6 @@ class AcessControl {
                     'viewProduct'
                 )
             )
-        ),
-        5 => array(
-
         )
     );
 

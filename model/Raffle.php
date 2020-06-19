@@ -140,7 +140,7 @@ class Raffle
         $this->raffle['raffleBought'] = $raffle->makeQuery("SELECT    
             u.id, u.name,
             rb.quantityRaffles, rb.created, rb.boughtRaffles, rb.id as raffle_buy_id,
-            r.productName, r.unitaryValue, r.picture, r.status, r.owner_id, r.id as raffleId
+            r.productName, r.unitaryValue, r.picture, r.status, r.owner_id, r.id as raffleId, r.draw_raffle
             FROM `raffles_buy` as rb
             INNER JOIN raffles as r on rb.prod_id = r.id
             INNER JOIN users as u on rb.user_id = u.id
@@ -210,7 +210,7 @@ class Raffle
     {
         $id = $_GET['raffleId'];
         $raffle = new Database();
-        if ($raffle->delete('raffles', $id)) {
+        if (!$raffle->delete('raffles', $id)) {
             return Flash::flashWithRedirect('Sucesso ao deletar rifa', 'success', 'modulo=Dashboard&acao=index&dashboardRoute=raffleList');
         }
         return Flash::flashWithRedirect('Erro ao deletar rifa', 'error', 'modulo=Dashboard&acao=index&dashboardRoute=raffleList');
@@ -230,9 +230,9 @@ class Raffle
         $this->raffle['raffleId'] = $id;
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
             if ($raffle->update('raffles', $_POST, $id)) {
-                return Flash::flashWithRedirect('Sucesso ao deletar rifa', 'success', 'modulo=Dashboard&acao=index&dashboardRoute=raffleList');
+                return Flash::flashWithRedirect('Sucesso ao editar rifa', 'success', 'modulo=Dashboard&acao=index&dashboardRoute=raffleList');
             }
-            return Flash::flashWithRedirect('Erro ao deletar rifa', 'success', 'modulo=Dashboard&acao=index&dashboardRoute=raffleList');
+            return Flash::flashWithRedirect('Erro ao editar rifa', 'error', 'modulo=Dashboard&acao=index&dashboardRoute=raffleList');
         }
         return $this->raffle;   
     }
