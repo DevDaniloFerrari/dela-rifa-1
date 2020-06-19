@@ -28,5 +28,6 @@ a{
     height: 10rem;
     margin: 0 auto;
     align-items: center;
+    object-fit: contain;
     align-content: center;
 }

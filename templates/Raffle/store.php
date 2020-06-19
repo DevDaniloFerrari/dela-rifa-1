@@ -30,7 +30,7 @@
                 <?php foreach ($data as $raffle) : ?>
                     <div class="col" style="padding-top: 5px;">
                         <div class="card card-raffle">
-                            <img class="card-img-top" src="<?= $raffle['picture']; ?>" alt="Card image cap">
+                            <img class="card-img-top" src="<?= $raffle['picture']; ?>"  alt="Card image cap">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title"><?= $raffle['productName']; ?></h5>
                                 <p class="card-text"><?= $raffle['description'] ?></p>
