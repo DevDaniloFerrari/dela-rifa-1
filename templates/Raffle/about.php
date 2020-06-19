@@ -16,10 +16,8 @@
         width: 3.5rem;
         background-color: #495057;
         color: #fff !important;
-        border-radius: 100%;
+        border-radius: 50%;
         text-align: center;
-        margin: 0 auto;
-        padding: 15px;
         font-size: 1.5rem;
         line-height: 3.5rem;
         margin-right: 1rem;
